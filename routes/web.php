@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    return view('welcome', [
-        "pageTitle" => "BIENVENIDO"
+    return view('index', [
+        "pageTitle" => "Home"
     ]);
 });
 
