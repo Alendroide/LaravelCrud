@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $pageTitle }}</title>
+    <title>CRUD | {{ $pageTitle }}</title>
+    <script src="{{ asset('/js/jquery-4.0.0.min.js') }}"></script>
 </head>
 <body>
-    
+    TEST HEADER (jQuery is included here)
+    <div>
+        @yield('content')
+    </div>
 </body>
 </html>
