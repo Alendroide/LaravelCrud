@@ -9,8 +9,7 @@
     border-radius: .50rem;
     padding: .5rem;
     cursor: pointer;
-    transition: all;
-    transition-duration: 200ms;
+    transition: all 200ms;
 }
 
 .upload-car-button:hover {
@@ -23,8 +22,7 @@
     background-color: rgb(240,240,240);
     overflow: hidden;
     border-radius: 1rem;
-    transition: all;
-    transition-duration: 200ms;
+    transition: all 200ms;
 }
 
 .car-card:hover {

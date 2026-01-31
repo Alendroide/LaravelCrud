@@ -14,14 +14,15 @@
         <p class="sidebar-item">Usuarios</p>
         <p class="sidebar-item">Info</p>
     </div>
-    <div>
+    <div id="page">
         <div id="navbar">
-            <p>Cerrar</p>
+            <p id="sidebar-toggle">Cerrar</p>
             <a id="logout-button" href="{{ route('logout') }}">Log out</a>
         </div>
         <div id="content">
             @yield('content')
         </div>
     </div>
+    <script src="{{ asset('/js/global.js') }}"></script>
 </body>
 </html>
