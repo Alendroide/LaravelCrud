@@ -1,3 +1,22 @@
+.upload-car-button {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    margin-left: auto;
+    background-color: green;
+    color: white;
+    border: 0;
+    border-radius: .50rem;
+    padding: .5rem;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 200ms;
+}
+
+.upload-car-button:hover {
+    background-color: rgb(0, 100, 0);
+}
+
 .car-card {
     width: 12rem;
     height: 12rem;
