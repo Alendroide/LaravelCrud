@@ -1,0 +1,27 @@
+.car-card {
+    width: 12rem;
+    height: 12rem;
+    background-color: rgb(240,240,240);
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: all;
+    transition-duration: 200ms;
+}
+
+.car-card:hover {
+    box-shadow: 0px 0px 5px black;
+}
+
+.car-image {
+    max-width: 12rem;
+    height: 6rem;
+}
+
+.car-info {
+    width: 12rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 1rem;
+}

@@ -17,7 +17,7 @@
     <div>
         <div id="navbar">
             <p>Cerrar</p>
-            <a href="{{ route('logout') }}">Log out</a>
+            <a id="logout-button" href="{{ route('logout') }}">Log out</a>
         </div>
         <div id="content">
             @yield('content')
