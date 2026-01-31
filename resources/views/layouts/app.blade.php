@@ -16,7 +16,7 @@
     </div>
     <div id="page">
         <div id="navbar">
-            <p id="sidebar-toggle">Cerrar</p>
+            <x-atoms.toggle-sidebar id="sidebar-toggle" />
             <a id="logout-button" href="{{ route('logout') }}">Log out</a>
         </div>
         <div id="content">
