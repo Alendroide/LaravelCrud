@@ -50,4 +50,10 @@ class AuthController extends Controller
             'email' => 'Invalid credentials',
         ]);
     }
+
+    public function logout(Request $request) {
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+        return redirect('/login');
+    }
 }

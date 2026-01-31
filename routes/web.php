@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
+Route::middleware("auth:sanctum")->get('/', function () {
     return view('index', [
         "pageTitle" => "Home"
     ]);
@@ -14,3 +14,5 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name("login");
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
