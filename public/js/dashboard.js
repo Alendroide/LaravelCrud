@@ -43,3 +43,17 @@ $(".modal-close").on("click", function () {
 $(".modal-overlay").on("click", function (e) {
     if ($(e.target).hasClass("modal-overlay")) $("#upload-car-modal").removeClass("show");
 });
+
+$("#create-car-form").on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: "/api/cars",
+        type: "POST",
+        dataType: "json",
+        data: $(this).serialize(),
+        success: function(response, status) {
+            $("#upload-car-modal").removeClass("show");
+            location.reload();
+        }
+    })
+})

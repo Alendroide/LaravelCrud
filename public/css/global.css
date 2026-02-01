@@ -84,7 +84,33 @@ body.sidebar-closed #page {
     padding: 2rem;
 }
 
-.default-input {
+.custom-button {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    background-color: rgb(200, 200, 200);
+    color: black;
+    border: 0;
+    border-radius: .50rem;
+    padding: .5rem;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.custom-button:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+.success-button {
+    background-color: green;
+    color: white;
+}
+
+.success-button:hover {
+    background-color: rgb(0, 100, 0);
+}
+
+.custom-input {
     width: 100%;
     padding: 1rem;
     border-radius: 2rem;

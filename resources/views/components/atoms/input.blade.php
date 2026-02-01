@@ -1,1 +1,0 @@
-<input class="default-input" {{$attributes}}>
