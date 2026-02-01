@@ -8,7 +8,7 @@
 
     <x-atoms.spinner id="loading-cars"/>
     
-    <div id="cars">
+    <div id="cars" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem">
     </div>
     
     <x-organisms.modal id="upload-car-modal" title="Sube tu auto">

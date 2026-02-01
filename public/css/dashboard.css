@@ -21,6 +21,8 @@
     width: 12rem;
     height: 6rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     box-sizing: border-box;
     padding: 1rem;
