@@ -83,3 +83,11 @@ body.sidebar-closed #page {
     box-sizing: border-box;
     padding: 2rem;
 }
+
+.default-input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
