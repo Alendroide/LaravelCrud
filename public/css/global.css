@@ -73,12 +73,6 @@ body.sidebar-closed #page {
     cursor: pointer;
 }
 
-#logout-button {
-    margin-left: auto;
-    margin-right: 1rem;
-    color: white;
-}
-
 #content {
     box-sizing: border-box;
     padding: 2rem;

@@ -59,7 +59,7 @@ $("#create-car-form").on("submit", function (e) {
         data: $(this).serialize(),
         success: function(response, status) {
             $("#upload-car-modal").removeClass("show");
-            cars.push(response);
+            cars = [response, ...cars];
             renderCars();
         }
     })

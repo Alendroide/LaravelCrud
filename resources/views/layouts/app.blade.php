@@ -9,18 +9,9 @@
     <link rel="stylesheet" href="{{ asset('/css/global.css') }}">
 </head>
 <body>
-    <div id="sidebar">
-        <img src="{{ asset('img/logo.png') }}" id="sidebar-logo" alt="sidebar-logo">
-        <p class="sidebar-item">Usuarios</p>
-        <p class="sidebar-item">Info</p>
-    </div>
+    <x-organisms.sidebar />
     <div id="page">
-        <div id="navbar">
-            <x-atoms.toggle-sidebar id="sidebar-toggle" />
-            <a id="logout-button" href="{{ route('logout') }}">
-                <x-atoms.logout-button />
-            </a>
-        </div>
+        <x-organisms.navbar />
         <div id="content">
             @yield('content')
         </div>
