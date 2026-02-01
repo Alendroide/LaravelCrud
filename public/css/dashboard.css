@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     gap: .25rem;
-    margin-left: auto;
     background-color: green;
     color: white;
     border: 0;
@@ -41,4 +40,50 @@
     justify-content: center;
     box-sizing: border-box;
     padding: 1rem;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    pointer-events: none;
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: all 200ms;
+}
+
+.modal-overlay.show {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.modal {
+    background: #fff;
+    width: 90%;
+    max-width: 32rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    animation: fadeIn .25s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

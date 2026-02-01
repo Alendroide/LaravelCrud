@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::middleware("auth:sanctum")->get('/', function () {
-    return view('index', [
+    return view('dashboard', [
         "pageTitle" => "Home"
     ]);
-});
+})->name("dashboard");
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');

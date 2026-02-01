@@ -28,7 +28,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect()->route("dashboard");
     }
 
     public function showLogin() {
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect()->route('dashboard');
         }
 
         return back()->withInput()->withErrors([
@@ -52,8 +52,9 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request) {
+        Auth::logout();
         $request->session()->invalidate();
-        $request->session()->regenerate();
-        return redirect('/login');
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

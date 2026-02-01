@@ -31,3 +31,15 @@ $.ajax({
         $("#loading-cars").remove();
     }
 })
+
+$("#upload-car-button").on("click", function(){
+    $("#upload-car-modal").addClass("show");
+})
+
+$(".modal-close").on("click", function () {
+    $("#upload-car-modal").removeClass("show");
+});
+
+$(".modal-overlay").on("click", function (e) {
+    if ($(e.target).hasClass("modal-overlay")) $("#upload-car-modal").removeClass("show");
+});

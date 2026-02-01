@@ -17,7 +17,9 @@
     <div id="page">
         <div id="navbar">
             <x-atoms.toggle-sidebar id="sidebar-toggle" />
-            <a id="logout-button" href="{{ route('logout') }}">Log out</a>
+            <a id="logout-button" href="{{ route('logout') }}">
+                <x-atoms.logout-button />
+            </a>
         </div>
         <div id="content">
             @yield('content')
