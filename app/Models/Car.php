@@ -15,6 +15,16 @@ class Car extends Model
         'brand',
         'line',
         'model',
+        'photos',
+        'owner_id',
     ];
+
+    protected $casts = [
+        'photos' => 'array',
+    ];
+
+    public function owner() {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
 
 }

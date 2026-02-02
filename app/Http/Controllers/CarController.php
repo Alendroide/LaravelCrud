@@ -20,9 +20,30 @@ class CarController extends Controller
             'model' => 'required|string',
             'color' => 'required|string',
             'plate' => 'required|string|unique:cars,plate',
+            'photos'   => 'nullable|array',
+            'photos.*' => 'image|max:2048',
         ]);
 
-        return Car::create($data);
+        $photoPaths = [];
+
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('cars', 'public');
+                $photoPaths[] = $path;
+            }
+        }
+
+        $car = Car::create([
+            'brand'    => $data['brand'],
+            'line'     => $data['line'],
+            'model'    => $data['model'],
+            'color'    => $data['color'],
+            'plate'    => $data['plate'],
+            'photos'   => $photoPaths,
+            'owner_id' => auth()->id(),
+        ]);
+
+        return response()->json($car);
     }
 
     public function show(Car $car)

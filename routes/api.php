@@ -8,4 +8,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/cars', CarController::class);
+Route::middleware('auth:sanctum')->apiResource('/cars', CarController::class);
