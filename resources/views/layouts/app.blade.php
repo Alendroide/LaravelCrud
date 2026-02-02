@@ -10,6 +10,7 @@
         window.AUTH_USER_ID = {{ auth()->id() ?? 'null' }};
     </script>
     <link rel="stylesheet" href="{{ asset('/css/global.css') }}">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <x-organisms.sidebar />

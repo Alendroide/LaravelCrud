@@ -7,9 +7,11 @@
     <title>Login | AutoHub</title>
     <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/global.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <form method="POST" action="{{route('login.post')}}">
+        <img src="{{ asset("/img/logo-dark.png") }}" alt="logo">
         @csrf
         <x-atoms.custom-input type="email" name="email" value="{{old('email')}}" required placeholder="pepe@example.com" />
         <x-atoms.custom-input type="password" name="password" required placeholder="********" />

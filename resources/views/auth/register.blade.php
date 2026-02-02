@@ -7,9 +7,11 @@
     <title>Register | AutoHub</title>
     <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/global.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <form method="POST" action="{{route('register.post')}}">
+        <img src="{{ asset("/img/logo-dark.png") }}" alt="logo">
         @csrf
         <x-atoms.custom-input type="text" name="name" required placeholder="Pepe Bonilla" />
         <x-atoms.custom-input type="email" name="email" required placeholder="pepe@example.com" />
