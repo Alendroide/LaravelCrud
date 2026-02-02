@@ -23,21 +23,14 @@ $(document).ready(function () {
         const $preview = $(`
             <div class="photo-preview" data-path="${path}">
                 <img src="/storage/${path}">
-                <button type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <button type="button" class="remove-photo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18"/>
+                        <path d="m6 6 12 12"/>
+                    </svg>
                 </button>
             </div>
         `);
-
-        $preview.find('button').on('click', () => {
-            existingPhotos = existingPhotos.filter(p => p !== path);
-            
-            $deleted.append(
-                `<input type="hidden" name="deleted_photos[]" value="${path}">`
-            );
-
-            $preview.remove();
-        });
 
         $previews.append($preview);
     }
@@ -66,23 +59,39 @@ $(document).ready(function () {
             const $preview = $(`
                 <div class="photo-preview">
                     <img src="${e.target.result}">
-                    <button type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    <button type="button" class="remove-photo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 6 18"/>
+                            <path d="m6 6 12 12"/>
+                        </svg>
                     </button>
                 </div>
             `);
-
-            $preview.find('button').on('click', () => {
-                newFiles = newFiles.filter(f => f !== file);
-                $preview.remove();
-                syncInputFiles();
-            });
 
             $previews.append($preview);
         };
 
         reader.readAsDataURL(file);
     }
+
+    $previews.on('click', '.remove-photo', function () {
+        const $preview = $(this).closest('.photo-preview');
+        const path = $preview.data('path');
+
+        if (path) {
+            existingPhotos = existingPhotos.filter(p => p !== path);
+
+            $deleted.append(
+                `<input type="hidden" name="deleted_photos[]" value="${path}">`
+            );
+        } else {
+            const index = $preview.index();
+            newFiles.splice(index - existingPhotos.length, 1);
+            syncInputFiles();
+        }
+
+        $preview.remove();
+    });
 
     function syncInputFiles() {
         const dt = new DataTransfer();
