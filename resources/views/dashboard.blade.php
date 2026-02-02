@@ -15,5 +15,6 @@
     <x-organisms.update-car-form />
 
     <script src="{{ asset("/js/dashboard.js") }}"></script>
+    <script src="{{ asset("/js/fetching/fetch-all.js") }}"></script>
     <link rel="stylesheet" href="{{ asset("/css/dashboard.css") }}">
 @endsection

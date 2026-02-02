@@ -23,26 +23,6 @@ function renderCars() {
     `).join(""));
 }
 
-$.ajax({
-    url: "/api/cars",
-    type: "GET",
-    dataType: "json",
-    success: function(response, status) {
-        cars = response.data;
-        renderCars();
-    },
-    error: function(xhr, status, error) {
-        $("#cars").html(`
-            <div class="error">
-                Error buscando vehículos!
-            </div>
-        `);
-    },
-    complete: function (){
-        $("#loading-cars").remove();
-    }
-})
-
 $("#upload-car-button").on("click", function(){
     $("#upload-car-modal").addClass("show");
 })
