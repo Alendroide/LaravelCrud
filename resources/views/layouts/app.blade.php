@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}">
 </head>
 <body>
+    <div id="sidebar-overlay"></div>
     <x-organisms.sidebar />
     <div id="page">
         <x-organisms.navbar />
