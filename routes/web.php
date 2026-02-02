@@ -5,9 +5,15 @@ use App\Http\Controllers\AuthController;
 
 Route::middleware("auth:sanctum")->get('/', function () {
     return view('dashboard', [
-        "pageTitle" => "Home"
+        "pageTitle" => "Inicio"
     ]);
 })->name("dashboard");
+
+Route::middleware("auth:sanctum")->get('/my-vehicles', function () {
+    return view('my-vehicles', [
+        "pageTitle" => "Mis vehículos"
+    ]);
+})->name("my-vehicles");
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');

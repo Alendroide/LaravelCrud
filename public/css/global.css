@@ -32,7 +32,6 @@ body.sidebar-closed #page {
 
 #sidebar-logo {
     max-width: 8rem;
-    margin: 2rem 0;
     transition: all 200ms;
     cursor: pointer;
 }
@@ -48,6 +47,8 @@ body.sidebar-closed #page {
     width: 16rem;
     transition: all 200ms;
     cursor: pointer;
+    color: white;
+    text-decoration: none;
 }
 
 .sidebar-item:hover {

@@ -1,0 +1,44 @@
+let cars = [];
+
+function renderCars() {
+    if (!cars || cars.length === 0) {
+        $("#cars").html("<p>No se encontraron vehículos.</p>");
+        return;
+    }
+
+    $("#cars").html(cars.map(car => `
+        <div class="car-card" data-id="${car.id}">
+            ${car.owner_id === window.AUTH_USER_ID ?
+                `<div class="edit-button" onclick="showUpdateModal(${car.id})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil-icon lucide-pencil"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+                </div>` : ""
+            }
+            <img class="car-image" src="/storage/${car.photos[0]}" />
+            <div class="car-info">
+                <p>${car.brand} ${car.line} ${car.model}</p>
+                <p><b>Color:</b> ${car.color}</p>
+                <p><b>Placa:</b> ${car.plate}</p>
+            </div>
+        </div>
+    `).join(""));
+}
+
+$.ajax({
+    url: "/api/my-vehicles",
+    type: "GET",
+    dataType: "json",
+    success: function(response, status) {
+        cars = response.data;
+        renderCars();
+    },
+    error: function(xhr, status, error) {
+        $("#cars").html(`
+            <div class="error">
+                Error buscando vehículos!
+            </div>
+        `);
+    },
+    complete: function (){
+        $("#loading-cars").remove();
+    }
+})

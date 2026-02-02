@@ -1,5 +1,7 @@
 <div id="sidebar">
-    <img src="{{ asset('img/logo.png') }}" id="sidebar-logo" alt="sidebar-logo">
-    <p class="sidebar-item">Usuarios</p>
-    <p class="sidebar-item">Info</p>
+    <a style="margin: 2rem 0;" href="{{ route('dashboard') }}">
+        <img src="{{ asset('img/logo.png') }}" id="sidebar-logo" alt="sidebar-logo">
+    </a>
+    <a href="{{ route("dashboard") }}" class="sidebar-item">Inicio</a>
+    <a href="{{ route("my-vehicles") }}" class="sidebar-item">Mis vehículos</a>
 </div>

@@ -1,0 +1,30 @@
+.car-card {
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+    background-color: rgb(240,240,240);
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: all 200ms;
+}
+
+.car-card:hover {
+    box-shadow: 0px 0px 5px black;
+}
+
+.car-image {
+    width: 12rem;
+    height: 6rem;
+    object-fit: cover;
+}
+
+.car-info {
+    width: 12rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 1rem;
+}
