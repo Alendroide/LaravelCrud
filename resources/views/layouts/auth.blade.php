@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- BOOTSTRAP -->
+    <script src="{{ asset("/js/bootstrap.bundle.min.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}">
 </head>
 <body>
     @yield('content')
