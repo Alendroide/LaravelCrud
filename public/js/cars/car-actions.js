@@ -51,7 +51,7 @@ $(document).ready(function() {
         e.preventDefault();
         const formData = new FormData(this);
         $.ajax({
-            url: "/api/cars",
+            url: "/cars",
             type: "POST",
             data: formData,
             processData: false,
@@ -72,7 +72,7 @@ $(document).ready(function() {
         const formData = new FormData(this);
         const id = $(this).find("input[name='id']").val();
         $.ajax({
-            url: "/api/cars/" + id,
+            url: "/cars/" + id,
             type: "POST",
             data: formData,
             processData: false,

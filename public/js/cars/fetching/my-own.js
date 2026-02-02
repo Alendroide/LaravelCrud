@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-        url: "/api/my-vehicles",
+        url: "/get-user-vehicles",
         type: "GET",
         dataType: "json",
         success: function(response, status) {

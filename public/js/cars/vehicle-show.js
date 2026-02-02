@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: `/api/cars/${window.VEHICLE_ID}`,
+        url: `/cars/${window.VEHICLE_ID}`,
         method: 'GET',
         success: function (response) {
             renderVehicle(response);
