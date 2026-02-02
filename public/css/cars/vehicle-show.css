@@ -36,17 +36,20 @@
     border: none;
     font-size: 24px;
     padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     opacity: 0;
     transition: all 200ms;
 }
 
 .carousel-btn:hover {
-    scale: 105%;
+    background-color: black;
 }
 
 .carousel-btn:active {
-    scale: 90%;
+    scale: 95%;
 }
 
 .carousel-btn.prev { left: 8px; }

@@ -97,7 +97,7 @@ body.sidebar-closed #page {
     opacity: 1;
 }
 
-.modal {
+.modal-box {
     background: #fff;
     width: 90%;
     max-width: 32rem;
@@ -108,7 +108,7 @@ body.sidebar-closed #page {
     overflow: auto;
 }
 
-.modal-header {
+.modal-box-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -116,7 +116,7 @@ body.sidebar-closed #page {
     border-bottom: 1px solid #eee;
 }
 
-.modal-body {
+.modal-box-body {
     padding: 1rem;
 }
 

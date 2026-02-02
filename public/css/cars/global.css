@@ -66,6 +66,10 @@ body.sidebar-closed #cars {
     padding: 1rem;
 }
 
+.car-info p {
+    margin-bottom: 0;
+}
+
 .photo-previews {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -90,6 +94,9 @@ body.sidebar-closed #cars {
 
 .photo-preview button {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 4px;
     right: 4px;
     background: rgba(0,0,0,.65);
@@ -99,4 +106,9 @@ body.sidebar-closed #cars {
     width: 22px;
     height: 22px;
     cursor: pointer;
+    transition: all 200ms;
+}
+
+.photo-preview button:hover {
+    background-color: black;
 }
