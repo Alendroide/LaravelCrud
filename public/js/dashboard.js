@@ -54,6 +54,7 @@ function showUpdateModal(id) {
     $("#update-car-form input[name='model']").val(car.model);
     $("#update-car-form input[name='plate']").val(car.plate);
     $("#update-car-form input[name='color']").val(car.color);
+    loadUpdateCarPhotos(car.photos);
 }
 
 $("#create-car-form").on("submit", function (e) {
@@ -78,11 +79,14 @@ $("#create-car-form").on("submit", function (e) {
 
 $("#update-car-form").on("submit", function (e) {
     e.preventDefault();
+    const formData = new FormData(this);
+    const id = $(this).find("input[name='id']").val();
     $.ajax({
-        url: "/api/cars/" + $(this).find("input[name='id']").val(),
-        type: "PUT",
-        dataType: "json",
-        data: $(this).serialize(),
+        url: "/api/cars/" + id,
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
         success: function(response, status) {
             $("#update-car-modal").removeClass("show");
             cars = cars.map(car => car.id === response.id ? response : car);

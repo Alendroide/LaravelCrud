@@ -68,10 +68,6 @@ class CarController extends Controller
         $currentPhotos = $car->photos ?? [];
 
         if (!empty($data['deleted_photos'])) {
-            foreach ($data['deleted_photos'] as $photo) {
-                Storage::disk('public')->delete($photo);
-            }
-
             $currentPhotos = array_values(
                 array_diff($currentPhotos, $data['deleted_photos'])
             );
