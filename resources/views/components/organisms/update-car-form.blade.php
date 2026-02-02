@@ -1,6 +1,6 @@
 <x-organisms.modal id="update-car-modal" title="Editar auto">
     <form id="update-car-form" style="display: flex; flex-direction: column; gap: 1rem;">
-
+        @csrf
         <input type="hidden" name="id" />
 
         <x-atoms.custom-input type="text" maxLength="255" name="brand" placeholder="Marca" required />
