@@ -20,7 +20,7 @@ class CarController extends Controller
             'model' => 'required|string',
             'color' => 'required|string',
             'plate' => 'required|string|unique:cars,plate',
-            'photos'   => 'nullable|array',
+            'photos'   => 'nullable|array|max:7',
             'photos.*' => 'image|max:2048',
         ]);
 
@@ -59,11 +59,41 @@ class CarController extends Controller
             'model' => 'required|string',
             'color' => 'required|string',
             'plate' => 'required|string|unique:cars,plate,' . $car->id,
+            'photos' => 'nullable|array|max:7',
+            'photos.*' => 'image|max:2048',
+            'deleted_photos' => 'nullable|array',
+            'deleted_photos.*' => 'string',
         ]);
 
-        $car->update($data);
+        $currentPhotos = $car->photos ?? [];
 
-        return $car;
+        if (!empty($data['deleted_photos'])) {
+            foreach ($data['deleted_photos'] as $photo) {
+                Storage::disk('public')->delete($photo);
+            }
+
+            $currentPhotos = array_values(
+                array_diff($currentPhotos, $data['deleted_photos'])
+            );
+        }
+
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('cars', 'public');
+                $currentPhotos[] = $path;
+            }
+        }
+
+        $car->update([
+            'brand'  => $data['brand'],
+            'line'   => $data['line'],
+            'model'  => $data['model'],
+            'color'  => $data['color'],
+            'plate'  => $data['plate'],
+            'photos' => $currentPhotos,
+        ]);
+
+        return response()->json($car);
     }
 
     public function destroy(Car $car)

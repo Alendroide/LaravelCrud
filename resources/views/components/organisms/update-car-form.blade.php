@@ -8,7 +8,7 @@
         <x-atoms.custom-input type="number" min="1980" max="2026" name="model" placeholder="Modelo" required />
         <x-atoms.custom-input type="text" minLength="6" maxLength="8" name="plate" placeholder="Placa" required />
         <x-atoms.custom-input type="text" maxLength="255" name="color" placeholder="Color" required />
-
+        <input type="file" name="photos[]" multiple accept="image/*" />
         <div>
             <x-atoms.custom-button type="submit" color="success-button">
                 Guardar cambios
