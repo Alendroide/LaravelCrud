@@ -12,6 +12,7 @@
     </div>
     
     <x-organisms.create-car-form />
+    <x-organisms.update-car-form />
 
     <script src="{{ asset("/js/dashboard.js") }}"></script>
     <link rel="stylesheet" href="{{ asset("/css/dashboard.css") }}">
