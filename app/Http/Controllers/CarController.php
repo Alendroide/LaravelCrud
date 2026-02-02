@@ -53,6 +53,12 @@ class CarController extends Controller
 
     public function update(Request $request, Car $car)
     {
+        $user = auth()->id();
+
+        if ($car->owner_id !== $user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $data = $request->validate([
             'brand' => 'required|string',
             'line' => 'required|string',
