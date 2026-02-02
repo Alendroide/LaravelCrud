@@ -79,8 +79,8 @@ $("#update-car-form").on("submit", function (e) {
         dataType: "json",
         data: $(this).serialize(),
         success: function(response, status) {
-            $("#upload-car-modal").removeClass("show");
-            cars = [response, ...cars];
+            $("#update-car-modal").removeClass("show");
+            cars = cars.map(car => car.id === response.id ? response : car);
             renderCars();
         }
     })
