@@ -84,7 +84,7 @@ body.sidebar-closed #page {
     inset: 0;
     background: rgba(0,0,0,.5);
     pointer-events: none;
-    display: none;
+    display: flex;
     opacity: 0;
     align-items: center;
     justify-content: center;
@@ -93,7 +93,6 @@ body.sidebar-closed #page {
 }
 
 .modal-overlay.show {
-    display: flex;
     pointer-events: all;
     opacity: 1;
 }
@@ -105,6 +104,8 @@ body.sidebar-closed #page {
     border-radius: 1rem;
     overflow: hidden;
     animation: fadeIn .25s ease;
+    max-height: 90%;
+    overflow: auto;
 }
 
 .modal-header {

@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register | AutoHub</title>
-    <link rel="stylesheet" href="/css/auth.css">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-</head>
-<body>
+@extends('layouts.auth')
+@section('title') Register @endsection
+@section('content')
     <form method="POST" action="{{route('register.post')}}">
         <img src="{{ asset("/img/logo-dark.png") }}" alt="logo">
         @csrf
@@ -22,5 +13,4 @@
             <x-atoms.custom-button type="submit" color="primary-button">Registrarte</x-atoms.custom-button>
         </div>
     </form>
-</body>
-</html>
+@endsection

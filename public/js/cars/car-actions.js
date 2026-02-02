@@ -23,17 +23,6 @@ function renderCars() {
     `).join(""));
 }
 
-$(document).on('click', '.car-card', function (e) {
-    if ($(e.target).closest('.edit-button').length) return;
-
-    const id = $(this).data('id');
-    window.location.href = `/car/${id}`;
-});
-
-$("#upload-car-button").on("click", function(){
-    $("#upload-car-modal").addClass("show");
-})
-
 function showUpdateModal(id) {
     $("#update-car-modal").addClass("show");
     let car = cars.find(car => car.id === id);
@@ -46,40 +35,54 @@ function showUpdateModal(id) {
     loadUpdateCarPhotos(car.photos);
 }
 
-$("#create-car-form").on("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    $.ajax({
-        url: "/api/cars",
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response, status) {
-            $("#upload-car-modal").removeClass("show");
-            cars = [response, ...cars];
-            renderCars();
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
+$(document).ready(function() {
+    $(document).on('click', '.car-card', function (e) {
+        if ($(e.target).closest('.edit-button').length) return;
+    
+        const id = $(this).data('id');
+        window.location.href = `/car/${id}`;
+    });
+    
+    $("#upload-car-button").on("click", function(){
+        $("#upload-car-modal").addClass("show");
     })
-})
+    
+    $("#create-car-form").on("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        $.ajax({
+            url: "/api/cars",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response, status) {
+                $("#upload-car-modal").removeClass("show");
+                cars = [response, ...cars];
+                renderCars();
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        })
+    })
+    
+    $("#update-car-form").on("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const id = $(this).find("input[name='id']").val();
+        $.ajax({
+            url: "/api/cars/" + id,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response, status) {
+                $("#update-car-modal").removeClass("show");
+                cars = cars.map(car => car.id === response.id ? response : car);
+                renderCars();
+            }
+        })
+    })
 
-$("#update-car-form").on("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    const id = $(this).find("input[name='id']").val();
-    $.ajax({
-        url: "/api/cars/" + id,
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response, status) {
-            $("#update-car-modal").removeClass("show");
-            cars = cars.map(car => car.id === response.id ? response : car);
-            renderCars();
-        }
-    })
-})
+});
