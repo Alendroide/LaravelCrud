@@ -17,6 +17,7 @@ body.sidebar-closed #cars {
     overflow: hidden;
     border-radius: 1rem;
     transition: all 200ms;
+    cursor: pointer;
 }
 
 .car-card:hover {

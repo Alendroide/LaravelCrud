@@ -15,6 +15,12 @@ Route::middleware("auth:sanctum")->get('/my-vehicles', function () {
     ]);
 })->name("my-vehicles");
 
+Route::middleware("auth:sanctum")->get("/car/{id}", function() {
+    return view('vehicle', [
+        "pageTitle" => "Vehículo"
+    ]);
+})->name("vehicle.show");
+
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 

@@ -1,0 +1,66 @@
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: black;
+    text-decoration: none;
+    margin: 1rem 0;
+}
+
+.vehicle-card {
+    display: flex;
+}
+
+.carousel {
+    position: relative;
+}
+
+.carousel:hover .carousel-btn {
+    opacity: 1;
+}
+
+.carousel-img {
+    width: 32rem;
+    height: 32rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,.5);
+    border-radius: 1rem;
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 4px 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 200ms;
+}
+
+.carousel-btn:hover {
+    scale: 105%;
+}
+
+.carousel-btn:active {
+    scale: 90%;
+}
+
+.carousel-btn.prev { left: 8px; }
+.carousel-btn.next { right: 8px; }
+
+.car-info {
+    margin-left: 1rem;
+}
+
+.car-brand {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.car-info p {
+    font-size: 1.5rem;
+}

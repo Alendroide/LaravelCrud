@@ -15,7 +15,7 @@
             id="update-photos-input"
             name="photos[]"
             multiple
-            accept="image/*"
+            accept="image/png,image/jpeg"
         />
         <div id="update-photo-previews" class="photo-previews"></div>
         <div id="deleted-photos-container"></div>

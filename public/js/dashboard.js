@@ -23,6 +23,13 @@ function renderCars() {
     `).join(""));
 }
 
+$(document).on('click', '.car-card', function (e) {
+    if ($(e.target).closest('.edit-button').length) return;
+
+    const id = $(this).data('id');
+    window.location.href = `/car/${id}`;
+});
+
 $("#upload-car-button").on("click", function(){
     $("#upload-car-modal").addClass("show");
 })
