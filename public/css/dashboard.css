@@ -49,8 +49,9 @@ body.sidebar-closed #cars {
 }
 
 .car-image {
-    max-width: 12rem;
+    width: 12rem;
     height: 6rem;
+    object-fit: cover;
 }
 
 .car-info {
