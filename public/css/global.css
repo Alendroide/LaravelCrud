@@ -111,7 +111,7 @@ body:not(.sidebar-state) #sidebar-overlay {
 
 #content {
     box-sizing: border-box;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
 }
 
 .modal-overlay {
