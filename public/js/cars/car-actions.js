@@ -1,5 +1,10 @@
 let cars = [];
 
+function formatPrice(value) {
+    if (!value) return "";
+    return `$${new Intl.NumberFormat('es-CL').format(value)}`;
+}
+
 function renderCars() {
     if (!cars || cars.length === 0) {
         $("#cars").html("<p>No se encontraron vehículos.</p>");
@@ -18,7 +23,7 @@ function renderCars() {
                 <p>${car.brand} ${car.line} ${car.model}</p>
                 <p><b>Color:</b> ${car.color}</p>
                 <p><b>Placa:</b> ${car.plate}</p>
-                <div>${car.price}</div>
+                <div class="fw-bold fs-5">${formatPrice(car.price)}</div>
             </div>
         </div>
     `).join(""));
@@ -34,10 +39,14 @@ function showUpdateModal(id) {
     $("#update-car-form input[name='plate']").val(car.plate);
     $("#update-car-form input[name='color']").val(car.color);
     $("#update-car-form input[name='price']").val(car.price);
+    $("#update-visual-price").val(formatPrice(car.price))
     loadUpdateCarPhotos(car.photos);
 }
 
 $(document).ready(function() {
+
+    // Extra validations
+
     $("#create-car-form").validate({
         rules: {
             "photos[]": {
@@ -76,6 +85,34 @@ $(document).ready(function() {
     $("#upload-car-button").on("click", function(){
         $("#upload-car-modal").addClass("show");
     })
+
+    // Parse logic
+
+    $('#create-visual-price').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        $('#create-real-price').val(value);
+
+        if (value === "") {
+            $(this).val("");
+            return;
+        }
+        let formattedValue = formatPrice(value);
+        $(this).val(formattedValue);
+    });
+
+    $('#update-visual-price').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        $('#update-real-price').val(value);
+
+        if (value === "") {
+            $(this).val("");
+            return;
+        }
+        let formattedValue = new Intl.NumberFormat('es-CL').format(value);
+        $(this).val(`$${formattedValue}`);
+    });
+
+    // Submit logic
     
     $("#create-car-form").on("submit", function (e) {
         e.preventDefault();

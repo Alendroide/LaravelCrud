@@ -9,7 +9,9 @@
         <x-atoms.custom-input type="number" min="1980" max="2026" name="model"  placeholder="Modelo" required />
         <x-atoms.custom-input type="text" minLength="6" maxLength="8" name="plate" placeholder="Placa" required />
         <x-atoms.custom-input type="text" minLength="3" maxLength="255" name="color"  placeholder="Color" required />
-        <x-atoms.custom-input type="number" min="0" max="99999999" name="price" placeholder="Precio" required />
+        
+        <x-atoms.custom-input type="text" id="update-visual-price" placeholder="Precio" required />
+        <input type="hidden" name="price" id="update-real-price" />
 
         <input
             type="file"
