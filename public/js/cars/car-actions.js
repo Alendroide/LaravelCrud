@@ -39,7 +39,7 @@ function showUpdateModal(id) {
     $("#update-car-form input[name='plate']").val(car.plate);
     $("#update-car-form input[name='color']").val(car.color);
     $("#update-car-form input[name='price']").val(car.price);
-    $("#update-visual-price").val(formatPrice(car.price))
+    $("#update-car-form .visual-price").val(formatPrice(car.price))
     loadUpdateCarPhotos(car.photos);
 }
 
@@ -88,9 +88,9 @@ $(document).ready(function() {
 
     // Parse logic
 
-    $('#create-visual-price').on('input', function() {
+    $('.visual-price').on('input', function() {
         let value = $(this).val().replace(/\D/g, '');
-        $('#create-real-price').val(value);
+        $(this).siblings('.real-price').val(value);
 
         if (value === "") {
             $(this).val("");
@@ -98,18 +98,6 @@ $(document).ready(function() {
         }
         let formattedValue = formatPrice(value);
         $(this).val(formattedValue);
-    });
-
-    $('#update-visual-price').on('input', function() {
-        let value = $(this).val().replace(/\D/g, '');
-        $('#update-real-price').val(value);
-
-        if (value === "") {
-            $(this).val("");
-            return;
-        }
-        let formattedValue = new Intl.NumberFormat('es-CL').format(value);
-        $(this).val(`$${formattedValue}`);
     });
 
     // Submit logic
