@@ -32,7 +32,7 @@ function showUpdateModal(id) {
     $("#update-car-form input[name='line']").val(car.line);
     $("#update-car-form input[name='model']").val(car.model);
     $("#update-car-form input[name='plate']").val(car.plate);
-    $("#update-car-form input[name='color']").val(car.color);
+    $("#update-car-form select[name='color']").val(car.color);
     $("#update-car-form input[name='price']").val(car.price);
     $("#update-car-form .visual-price").val(formatPrice(car.price))
     loadUpdateCarPhotos(car.photos);
