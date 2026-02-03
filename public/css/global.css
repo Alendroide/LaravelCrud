@@ -183,6 +183,10 @@ body.sidebar-closed #sidebar-overlay {
     box-sizing: border-box;
 }
 
+.error {
+    color: red;
+}
+
 @media (min-width: 768px) {
     #sidebar-overlay {
         display: none;

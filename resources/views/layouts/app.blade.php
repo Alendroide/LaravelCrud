@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $pageTitle }} | AutoHub</title>
     <script src="{{ asset('/js/jquery-4.0.0.min.js') }}"></script>
+    <script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('/js/messages_es.min.js') }}"></script>
     <script>
         window.AUTH_USER_ID = {{ auth()->id() ?? 'null' }};
     </script>
