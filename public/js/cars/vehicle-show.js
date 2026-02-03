@@ -14,6 +14,7 @@ $(document).ready(function () {
     });
 
     function renderVehicle(car) {
+        const carDpColor = COLOR_MAP[car.color];
         $("#vehicle").html(`
             <div class="carousel col-12 col-xl-6" data-index="0">
                 <button class="carousel-btn prev">
@@ -30,10 +31,10 @@ $(document).ready(function () {
                 <h2 class="fw-bold fs-1">${car.brand} ${car.line}</h2>
                 <h3 class="fw-bold fs-3">${car.model}</h3>
                 <p>${formatPrice(car.price)}</p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette-icon lucide-palette"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></svg>
-                    ${car.color}
-                </p>
+                <div class="d-flex align-items-center">
+                    <div class="color-display border border-2 border-black me-2" style="background:${carDpColor.css};"></div>
+                    <p style="margin:0">${carDpColor.label}</p>
+                </div>
                 <p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car-front-icon lucide-car-front"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
                     ${car.plate}
