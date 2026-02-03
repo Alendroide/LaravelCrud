@@ -8,7 +8,7 @@
         <x-atoms.custom-input type="text" maxLength="255" name="line"   placeholder="Linea" required />
         <x-atoms.custom-input type="number" min="1980" max="2026" name="model"  placeholder="Modelo" required />
         <x-atoms.custom-input type="text" minLength="6" maxLength="8" name="plate" placeholder="Placa" required />
-        <x-atoms.custom-input type="text" minLength="3" maxLength="255" name="color"  placeholder="Color" required />
+        <x-organisms.select-color />
         
         <input type="text" class="custom-input visual-price" placeholder="Precio" required />
         <input type="hidden" name="price" class="real-price" />

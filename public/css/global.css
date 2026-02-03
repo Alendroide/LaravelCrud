@@ -206,6 +206,9 @@ body:not(.sidebar-state) #sidebar-overlay {
     border-radius: 2rem;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .error {
