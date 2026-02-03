@@ -38,8 +38,31 @@ function showUpdateModal(id) {
 }
 
 $(document).ready(function() {
-    $("#create-car-form").validate();
-    $("#update-car-form").validate();
+    $("#create-car-form").validate({
+        rules: {
+            "photos[]": {
+                filesize: 2 * 1024 * 1024
+            }
+        },
+        messages: {
+            "photos[]": {
+                filesize: "Cada imagen debe pesar máximo 2MB"
+            }
+        }
+    });
+
+    $("#update-car-form").validate({
+        rules: {
+            "photos[]": {
+                filesize: 2 * 1024 * 1024
+            }
+        },
+        messages: {
+            "photos[]": {
+                filesize: "Cada imagen debe pesar máximo 2MB"
+            }
+        }
+    });
 
     $(document).on('click', '.car-card', function (e) {
         if ($(e.target).closest('.edit-button').length) return;
