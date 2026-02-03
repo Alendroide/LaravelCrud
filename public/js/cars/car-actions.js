@@ -64,6 +64,8 @@ $(document).ready(function() {
         }
     });
 
+    // Redirect to car page on click
+
     $(document).on('click', '.car-card', function (e) {
         if ($(e.target).closest('.edit-button').length) return;
     
@@ -88,6 +90,7 @@ $(document).ready(function() {
                 $("#upload-car-modal").removeClass("show");
                 cars = [response, ...cars];
                 renderCars();
+                this.reset();
             },
             error: function(xhr, status, error) {
                 console.error(error);
