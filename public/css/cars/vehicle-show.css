@@ -15,13 +15,9 @@
     position: relative;
 }
 
-.carousel:hover .carousel-btn {
-    opacity: 1;
-}
-
 .carousel-img {
-    width: 32rem;
-    height: 32rem;
+    width: 100%;
+    height: 28rem;
     object-fit: cover;
     border-radius: 1rem;
 }
@@ -40,7 +36,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    opacity: 0;
+    opacity: 1;
     transition: all 200ms;
 }
 
@@ -52,11 +48,12 @@
     scale: 95%;
 }
 
-.carousel-btn.prev { left: 8px; }
-.carousel-btn.next { right: 8px; }
+.carousel-btn.prev { left: 1rem; }
+.carousel-btn.next { right: 1rem; }
 
 .car-info {
-    margin-left: 1rem;
+    box-sizing: border-box;
+    padding: 1rem;
 }
 
 .car-brand {
@@ -66,4 +63,13 @@
 
 .car-info p {
     font-size: 1.5rem;
+}
+
+@media (min-width: 768px){
+    .carousel:hover .carousel-btn {
+        opacity: 1;
+    }
+    .carousel-btn {
+        opacity: 0;
+    }
 }

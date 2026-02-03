@@ -89,7 +89,7 @@ body:not(.sidebar-state) #sidebar-overlay {
 
 #content {
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 0 1rem;
 }
 
 .modal-overlay {
@@ -231,5 +231,10 @@ body:not(.sidebar-state) #sidebar-overlay {
     body.sidebar-state #page {
         margin-left: 0;
         width: 100vw;
+    }
+
+    #content {
+        box-sizing: border-box;
+        padding: 2rem;
     }
 }

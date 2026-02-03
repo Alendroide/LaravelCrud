@@ -8,7 +8,7 @@
 
     <x-atoms.spinner id="loading-vehicle"/>
 
-    <div id="vehicle"></div>
+    <div id="vehicle" class="row"></div>
 
     <script>
         window.VEHICLE_ID = {{ request()->route('id') }};
