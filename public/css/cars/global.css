@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 1rem;
-    margin-top: 1rem
+    margin-top: 1rem;
+    justify-items: center;
 }
 
 .car-card {
