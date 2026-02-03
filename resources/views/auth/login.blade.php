@@ -6,13 +6,13 @@
         @csrf
         <x-atoms.custom-input type="email" maxLength="40" name="email" value="{{old('email')}}" required placeholder="pepe@example.com" />
         <x-atoms.custom-input type="password" minLength="8" name="password" required placeholder="********" />
+        @error('email')
+            <p class="error">Credenciales incorrectas</p>
+        @enderror
         <a href="{{route("register")}}">No tienes una cuenta? Regístrate aquí</a>
         <div>
             <x-atoms.custom-button type="submit" color="primary-button">Iniciar sesión</x-atoms.custom-button>
         </div>
     </form>
-    @error('email')
-        <p class="error">Credenciales incorrectas</p>
-    @enderror
     <script>$("#login-form").validate();</script>
 @endsection
