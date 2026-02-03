@@ -22,6 +22,7 @@ class CarController extends Controller
             'plate' => 'required|string|unique:cars,plate',
             'photos'   => 'nullable|array|max:7',
             'photos.*' => 'image|max:2048',
+            'price' => 'nullable|numeric',
         ]);
 
         $photoPaths = [];
@@ -41,6 +42,7 @@ class CarController extends Controller
             'plate'    => $data['plate'],
             'photos'   => $photoPaths,
             'owner_id' => auth()->id(),
+            'price'    => $data['price'],
         ]);
 
         return response()->json($car);
@@ -69,6 +71,7 @@ class CarController extends Controller
             'photos.*' => 'image|max:2048',
             'deleted_photos' => 'nullable|array',
             'deleted_photos.*' => 'string',
+            'price' => 'nullable|numeric',
         ]);
 
         $currentPhotos = $car->photos ?? [];
@@ -93,6 +96,7 @@ class CarController extends Controller
             'color'  => $data['color'],
             'plate'  => $data['plate'],
             'photos' => $currentPhotos,
+            'price'  => $data['price'],
         ]);
 
         return response()->json($car);
