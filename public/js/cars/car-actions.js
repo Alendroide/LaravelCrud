@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     // Extra validations
 
-    $("#create-car-form").validate({
+    const carValidationConfig = {
         rules: {
             "photos[]": {
                 filesize: 2 * 1024 * 1024
@@ -58,20 +58,11 @@ $(document).ready(function() {
                 filesize: "Cada imagen debe pesar máximo 2MB"
             }
         }
-    });
+    };
 
-    $("#update-car-form").validate({
-        rules: {
-            "photos[]": {
-                filesize: 2 * 1024 * 1024
-            }
-        },
-        messages: {
-            "photos[]": {
-                filesize: "Cada imagen debe pesar máximo 2MB"
-            }
-        }
-    });
+    $("#create-car-form").validate(carValidationConfig);
+
+    $("#update-car-form").validate(carValidationConfig);
 
     // Redirect to car page on click
 
