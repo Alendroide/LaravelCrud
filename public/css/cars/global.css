@@ -22,7 +22,7 @@
 }
 
 .edit-button {
-    opacity: 0;
+    opacity: 1;
     position: absolute;
     display: flex;
     align-items: center;
@@ -35,10 +35,6 @@
     background-color: rgb(230,230,230);
     cursor: pointer;
     transition: all 200ms
-}
-
-.car-card:hover .edit-button {
-    opacity: 1;
 }
 
 .edit-button:hover {
@@ -108,4 +104,13 @@
 
 .photo-preview button:hover {
     background-color: black;
+}
+
+@media (min-width: 768px) {
+    .edit-button {
+        opacity: 0;
+    }
+    .car-card:hover .edit-button {
+        opacity: 1;
+    }
 }
