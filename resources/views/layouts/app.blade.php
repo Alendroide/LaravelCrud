@@ -16,6 +16,7 @@
     <!-- BOOTSTRAP -->
     <script src="{{ asset("/js/bootstrap.bundle.min.js") }}"></script>
     <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}">
+    <script src="{{ asset("/js/cars/utils.js") }}"></script>
 </head>
 <body>
     <div id="sidebar-overlay"></div>

@@ -1,10 +1,5 @@
 let cars = [];
 
-function formatPrice(value) {
-    if (!value) return "";
-    return `$${new Intl.NumberFormat('es-CL').format(value)}`;
-}
-
 function renderCars() {
     if (!cars || cars.length === 0) {
         $("#cars").html("<p>No se encontraron vehículos.</p>");
