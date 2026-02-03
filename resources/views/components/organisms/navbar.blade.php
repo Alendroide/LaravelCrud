@@ -1,7 +1,8 @@
 <div id="navbar">
+    <img id="navbar-logo" src="{{ asset("/img/logo.png") }}" alt="logo">
     <x-icons.menu id="sidebar-toggle" />
-    <p style="margin-left: auto; margin-right: 1rem; font-weight: 700; margin-bottom: 0;">Bienvenido, {{auth()->user()->name}}</p>
-    <a style=" margin-right: 1rem; color: white;" href="{{ route('logout') }}">
+    <p id="welcome-text">Bienvenido, {{auth()->user()->name}}</p>
+    <a id="logout-icon" href="{{ route('logout') }}">
         <x-icons.logout />
     </a>
 </div>
