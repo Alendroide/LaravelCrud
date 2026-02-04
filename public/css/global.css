@@ -215,6 +215,45 @@ body:not(.sidebar-state) #sidebar-overlay {
     color: red;
 }
 
+#toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.c-toast {
+    min-width: 280px;
+    padding: .75rem 1rem;
+    border-radius: 6px;
+    color: #fff;
+    font-size: .9rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all .25s ease;
+}
+
+.c-toast-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.c-toast-error {
+    background: #dc2626;
+}
+
+.c-toast-success {
+    background: #16a34a;
+}
+
+.c-toast-warning {
+    background: #f59e0b;
+}
+
 @media (min-width: 768px) {
     #sidebar-overlay {
         display: none;

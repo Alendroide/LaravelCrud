@@ -14,8 +14,10 @@
     <!-- BOOTSTRAP -->
     <script src="{{ asset("/js/bootstrap.bundle.min.js") }}"></script>
     <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}">
+    <script src="{{ asset("/js/utils.js") }}"></script>
 </head>
 <body>
+    <div id="toast-container"></div>
     @yield('content')
 </body>
 </html>

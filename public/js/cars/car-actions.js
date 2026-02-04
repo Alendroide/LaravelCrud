@@ -107,7 +107,15 @@ $(document).ready(function() {
                 $("#photo-previews").html("");
             },
             error: function(xhr, status, error) {
-                console.error(error);
+                if (xhr.status === 422 && xhr.responseJSON?.errors) {
+                    Object.values(xhr.responseJSON.errors).forEach(messages => {
+                        messages.forEach(msg => showToast(msg, "error"));
+                    });
+                } else if (xhr.responseJSON?.message) {
+                    showToast(xhr.responseJSON.message, "error");
+                } else {
+                    showToast("Error inesperado, intenta de nuevo", "error");
+                }
             }
         })
     })
@@ -126,6 +134,17 @@ $(document).ready(function() {
                 $("#update-car-modal").removeClass("show");
                 cars = cars.map(car => car.id === response.id ? response : car);
                 renderCars();
+            },
+            error: function(xhr, status, error) {
+                if (xhr.status === 422 && xhr.responseJSON?.errors) {
+                    Object.values(xhr.responseJSON.errors).forEach(messages => {
+                        messages.forEach(msg => showToast(msg, "error"));
+                    });
+                } else if (xhr.responseJSON?.message) {
+                    showToast(xhr.responseJSON.message, "error");
+                } else {
+                    showToast("Error inesperado, intenta de nuevo", "error");
+                }
             }
         })
     })
