@@ -1,4 +1,4 @@
-<select class="custom-input" name="color" required>
+<select {{$attributes}} name="color">
     <option value="">Seleccione un color</option>
 
     <optgroup label="Colores básicos">

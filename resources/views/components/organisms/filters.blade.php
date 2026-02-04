@@ -6,12 +6,7 @@
 
             <input type="text" name="line" class="form-control" placeholder="Línea">
 
-            <select name="color" class="form-control">
-                <option value="">Color</option>
-                <option value="rojo">Rojo</option>
-                <option value="azul">Azul</option>
-                <option value="negro">Negro</option>
-            </select>
+            <x-organisms.select-color class="form-control" />
 
             <input type="number" name="model" class="form-control" placeholder="Modelo">
 
