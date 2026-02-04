@@ -11,10 +11,10 @@ class CarController extends Controller
     {
         $cars = Car::query()
             ->when($request->brand, function ($q) use ($request) {
-                $q->where('brand', $request->brand);
+                $q->where('brand', "LIKE", "%$request->brand");
             })
             ->when($request->line, function ($q) use ($request) {
-                $q->where('line', $request->line);
+                $q->where('line', "LIKE", "%$request->line");
             })
             ->when($request->color, function ($q) use ($request) {
                 $q->where('color', $request->color);
