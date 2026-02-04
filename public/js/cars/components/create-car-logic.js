@@ -1,21 +1,21 @@
+let photosFiles = [];
+
 $(document).ready(function () {
     const MAX_FILES = 7;
     const $input = $('#photos-input');
     const $previews = $('#photo-previews');
 
-    let files = [];
-
     $input.on('change', function (e) {
         const selected = Array.from(this.files);
 
-        if (files.length + selected.length > MAX_FILES) {
+        if (photosFiles.length + selected.length > MAX_FILES) {
             alert(`Máximo ${MAX_FILES} fotos.`);
             $input.val('');
             return;
         }
 
         selected.forEach(file => {
-            files.push(file);
+            photosFiles.push(file);
             renderPreview(file);
         });
 
@@ -36,7 +36,7 @@ $(document).ready(function () {
             `);
 
             $preview.find('button').on('click', () => {
-                files = files.filter(f => f !== file);
+                photosFiles = photosFiles.filter(f => f !== file);
                 $preview.remove();
                 syncFiles();
             });
@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     function syncFiles() {
         const dt = new DataTransfer();
-        files.forEach(file => dt.items.add(file));
+        photosFiles.forEach(file => dt.items.add(file));
         $input[0].files = dt.files;
     }
 });

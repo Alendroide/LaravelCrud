@@ -90,6 +90,7 @@ $(document).ready(function() {
     
     $("#create-car-form").on("submit", function (e) {
         e.preventDefault();
+        const form = this;
         const formData = new FormData(this);
         $.ajax({
             url: "/cars",
@@ -101,7 +102,9 @@ $(document).ready(function() {
                 $("#upload-car-modal").removeClass("show");
                 cars = [response, ...cars];
                 renderCars();
-                this.reset();
+                form.reset();
+                photosFiles = [];
+                $("#photo-previews").html("");
             },
             error: function(xhr, status, error) {
                 console.error(error);

@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\CarSeeder;
+use App\Models\Car;
 
-class DatabaseSeeder extends Seeder
+class CarSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(CarSeeder::class);
+        Car::factory()
+            ->count(1000)
+            ->create();
     }
 }

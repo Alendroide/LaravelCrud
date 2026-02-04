@@ -21,7 +21,7 @@ $(document).ready(function () {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
                 </button>
 
-                <img class="carousel-img shadow" src="/storage/${car.photos[0]}" />
+                <img class="carousel-img shadow" src="${car.photos?.length > 0 ? `/storage/${car.photos[0]}` : '/img/default_car.png'}" />
 
                 <button class="carousel-btn next">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -42,7 +42,7 @@ $(document).ready(function () {
             </div>
         `);
         window.CAR_PHOTOS = car.photos;
-        if (car.photos.length <= 1) {
+        if (car.photos?.length <= 1) {
             $('.carousel-btn').hide();
         }
     }
