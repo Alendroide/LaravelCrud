@@ -72,3 +72,54 @@ const COLOR_MAP = {
     camuflado:         { label: "Camuflado", css: "linear-gradient(135deg,#4b5320,#78866b,#2f3e1f)" },
     personalizado:     { label: "Personalizado", css: "repeating-linear-gradient(45deg,#ccc,#ccc 5px,#999 5px,#999 10px)" }
 };
+
+function compressImage(file, maxSizeKB = 120, maxWidth = 1920) {
+    return new Promise((resolve, reject) => {
+        if (!file.type.startsWith("image/")) {
+            return resolve(file);
+        }
+
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = e => img.src = e.target.result;
+        reader.onerror = reject;
+
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            let { width, height } = img;
+            if (width > maxWidth) {
+                height = Math.round((height * maxWidth) / width);
+                width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+
+            let quality = 0.9;
+
+            function attempt() {
+                canvas.toBlob(blob => {
+                    if (!blob) return reject("Compression failed");
+
+                    if (blob.size / 1024 <= maxSizeKB || quality <= 0.4) {
+                        resolve(new File([blob], file.name, {
+                            type: blob.type,
+                            lastModified: Date.now()
+                        }));
+                    } else {
+                        quality -= 0.1;
+                        attempt();
+                    }
+                }, "image/jpeg", quality);
+            }
+
+            attempt();
+        };
+
+        reader.readAsDataURL(file);
+    });
+}

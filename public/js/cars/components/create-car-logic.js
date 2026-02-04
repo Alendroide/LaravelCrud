@@ -14,12 +14,13 @@ $(document).ready(function () {
             return;
         }
 
-        selected.forEach(file => {
-            photosFiles.push(file);
-            renderPreview(file);
+        selected.forEach(async file => {
+            const compressed = await compressImage(file, 120, 1280);
+            photosFiles.push(compressed);
+            renderPreview(compressed);
+            syncFiles();
         });
 
-        syncFiles();
     });
 
     function renderPreview(file) {

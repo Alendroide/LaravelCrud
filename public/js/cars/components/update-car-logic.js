@@ -44,12 +44,13 @@ $(document).ready(function () {
             return;
         }
 
-        selected.forEach(file => {
-            newFiles.push(file);
+        selected.forEach(async file => {
+            const compressed = await compressImage(file, 120, 1280);
+            newFiles.push(compressed);
             renderNewPhoto(file);
+            syncInputFiles();
         });
 
-        syncInputFiles();
     });
 
     function renderNewPhoto(file) {
