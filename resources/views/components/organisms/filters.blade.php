@@ -14,16 +14,19 @@
 
             <input type="number" name="max_price" class="form-control" placeholder="Precio máx">
 
-            <button class="btn btn-primary">
+            <button class="btn btn-outline-primary d-flex justify-content-center align-items-center">
+                <x-icons.search />
                 Buscar
             </button>
 
-            <button type="button" id="clear-filters" class="btn btn-outline-secondary">
+            <button type="button" id="clear-filters" class="btn btn-outline-danger d-flex justify-content-center align-items-center">
+                <x-icons.trash />
                 Limpiar
             </button>
 
-            <button type="button" id="download-excel" class="btn btn-success">
-                Descargar Excel
+            <button type="button" id="download-excel" class="btn btn-outline-success d-flex justify-content-center align-items-center">
+                <x-icons.excel />
+                Excel
             </button>
 
         </form>
