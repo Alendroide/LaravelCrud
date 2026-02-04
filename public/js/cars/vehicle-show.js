@@ -42,7 +42,7 @@ $(document).ready(function () {
             </div>
         `);
         window.CAR_PHOTOS = car.photos;
-        if (car.photos.length <= 1) {
+        if (car.photos?.length <= 1) {
             $('.carousel-btn').hide();
         }
     }
