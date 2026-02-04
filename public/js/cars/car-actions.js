@@ -52,24 +52,10 @@ $(document).ready(function() {
         fetchCars(query);
     });
 
-    // Extra validations
+    // Form validations
 
-    const carValidationConfig = {
-        rules: {
-            "photos[]": {
-                filesize: 2 * 1024 * 1024
-            }
-        },
-        messages: {
-            "photos[]": {
-                filesize: "Cada imagen debe pesar máximo 2MB"
-            }
-        }
-    };
-
-    $("#create-car-form").validate(carValidationConfig);
-
-    $("#update-car-form").validate(carValidationConfig);
+    $("#create-car-form").validate();
+    $("#update-car-form").validate();
 
     // Redirect to car page on click
 
@@ -80,6 +66,8 @@ $(document).ready(function() {
         window.location.href = `/car/${id}`;
     });
     
+    // Open Create Modal
+
     $("#upload-car-button").on("click", function(){
         $("#upload-car-modal").addClass("show");
     })
