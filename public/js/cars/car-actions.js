@@ -40,6 +40,18 @@ function showUpdateModal(id) {
 
 $(document).ready(function() {
 
+    // Pagination logic
+
+    $(document).on("click", "#pagination .page-link", function (e) {
+        e.preventDefault();
+
+        const url = $(this).data("url");
+        if (!url) return;
+
+        const query = url.split("?")[1];
+        fetchCars(query);
+    });
+
     // Extra validations
 
     const carValidationConfig = {
