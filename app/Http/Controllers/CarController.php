@@ -73,6 +73,7 @@ class CarController extends Controller
 
     public function show(Car $car)
     {
+        $car->increment('views');
         return $car;
     }
 
