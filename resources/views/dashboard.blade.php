@@ -6,6 +6,7 @@
         Sube tu vehículo
     </x-atoms.custom-button>
 
+    <x-organisms.filters />
     <x-atoms.spinner id="loading-cars"/>
     
     <div id="cars">

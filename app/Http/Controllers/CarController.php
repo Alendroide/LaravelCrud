@@ -7,9 +7,32 @@ use App\Models\Car;
 
 class CarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Car::orderBy('id', 'desc')->paginate(12);
+        $cars = Car::query()
+            ->when($request->brand, function ($q) use ($request) {
+                $q->where('brand', $request->brand);
+            })
+            ->when($request->line, function ($q) use ($request) {
+                $q->where('line', $request->line);
+            })
+            ->when($request->color, function ($q) use ($request) {
+                $q->where('color', $request->color);
+            })
+            ->when($request->model, function ($q) use ($request) {
+                $q->where('model', $request->model);
+            })
+            ->when($request->min_price, function ($q) use ($request) {
+                $q->where('price', '>=', $request->min_price);
+            })
+            ->when($request->max_price, function ($q) use ($request) {
+                $q->where('price', '<=', $request->max_price);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(12)
+            ->withQueryString();
+
+        return $cars;
     }
 
     public function store(Request $request)
