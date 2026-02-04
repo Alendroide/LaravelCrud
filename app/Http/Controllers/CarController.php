@@ -128,9 +128,9 @@ class CarController extends Controller
 
     public function destroy(Car $car)
     {
-        $car->delete();
-
-        return response()->noContent();
+        $car->status = ! $car->status;
+        $car->save();
+        return response()->json([ "message" => "status toggled successfully"]);
     }
 
     public function myVehicles() {

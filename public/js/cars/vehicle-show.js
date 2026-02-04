@@ -29,7 +29,7 @@ $(document).ready(function () {
             </div>
             <div class="car-info col-12 col-xl-6 position-relative">
                 ${window.AUTH_USER_ID === car.owner_id ?
-                    `<div class="archive-button">
+                    `<div class="archive-button ${car.status ? "" : "archived"}" data-id="${car.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive-icon lucide-archive"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>
                     </div>`
                     :
@@ -57,6 +57,26 @@ $(document).ready(function () {
             $('.carousel-btn').hide();
         }
     }
+
+    $(document).on("click",".archive-button", function() {
+        const carId = $(this).data('id');
+        $.ajax({
+            url: `/cars/${carId}`,
+            type: 'POST',
+            data: {
+                _method: 'DELETE',
+                _token: $('meta[name="csrf-token"]').attr('content'),
+            },
+            success: (response) => {
+                console.log(response);
+                $(this).toggleClass('archived');
+            },
+            error: (xhr) => {
+                console.error(xhr.responseText);
+                alert('Could not archive car');
+            }
+        });
+    });
 
     $(document).on('click', '.carousel-btn', function () {
         const $carousel = $(this).closest('.carousel');

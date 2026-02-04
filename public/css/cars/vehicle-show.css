@@ -86,6 +86,14 @@
     box-shadow: 0px 0px 2px black;
 }
 
+.archive-button.archived {
+    opacity: .2;
+}
+
+.archive-button.archived:hover {
+    opacity: .5;
+}
+
 @media (min-width: 768px){
     .carousel:hover .carousel-btn {
         opacity: 1;

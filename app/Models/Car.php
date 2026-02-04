@@ -23,6 +23,7 @@ class Car extends Model
 
     protected $casts = [
         'photos' => 'array',
+        'status' => 'boolean'
     ];
 
     public function owner() {
