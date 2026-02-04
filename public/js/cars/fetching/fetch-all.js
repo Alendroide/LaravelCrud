@@ -30,7 +30,7 @@ $(document).ready(function() {
     $("#car-filters").on("submit", function (e) {
         e.preventDefault();
 
-        const filters = $(this).serialize(); // 🔥 genera query string automáticamente
+        const filters = $(this).serialize();
         fetchCars(filters);
     });
 
