@@ -16,6 +16,12 @@ Route::middleware("auth")->get('/my-vehicles', function () {
     ]);
 })->name("my-vehicles");
 
+Route::middleware("auth")->get('/my-archives', function () {
+    return view('my-archives', [
+        "pageTitle" => "Mis archivos"
+    ]);
+})->name("my-archives");
+
 Route::middleware("auth")->get("/car/{id}", function() {
     return view('vehicle', [
         "pageTitle" => "Vehículo"
@@ -34,3 +40,4 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->resource('/cars', CarController::class);
 Route::middleware('auth')->get('/get-user-vehicles', [CarController::class, 'myVehicles']);
+Route::middleware('auth')->get('/get-archive-vehicles', [CarController::class, 'myArchives']);

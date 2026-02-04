@@ -4,4 +4,5 @@
     </a>
     <a href="{{ route("dashboard") }}" class="sidebar-item">Inicio</a>
     <a href="{{ route("my-vehicles") }}" class="sidebar-item">Mis vehículos</a>
+    <a href="{{ route("my-archives") }}" class="sidebar-item">Archivo</a>
 </div>

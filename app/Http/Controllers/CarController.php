@@ -135,7 +135,7 @@ class CarController extends Controller
     }
 
     public function myVehicles() {
-        return Car::where('owner_id', auth()->id())->orderBy('views', 'desc')->paginate(12);
+        return Car::where('owner_id', auth()->id())->where('status', true)->orderBy('views', 'desc')->paginate(12);
     }
 
     public function myArchives() {
