@@ -28,7 +28,7 @@ class CarController extends Controller
             ->when($request->max_price, function ($q) use ($request) {
                 $q->where('price', '<=', $request->max_price);
             })
-            ->orderBy('id', 'desc')
+            ->orderBy('views', 'desc')
             ->paginate(12)
             ->withQueryString();
 
