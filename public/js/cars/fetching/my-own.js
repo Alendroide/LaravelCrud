@@ -6,6 +6,7 @@ $(document).ready(function() {
         success: function(response, status) {
             cars = response.data;
             renderCars();
+            renderPagination(response.links);
         },
         error: function(xhr, status, error) {
             $("#cars").html(`

@@ -3,6 +3,38 @@ function formatPrice(value) {
     return `$${new Intl.NumberFormat('es-CL').format(value)}`;
 }
 
+function renderPagination(pagination) {
+    if (!pagination || pagination.length <= 1) {
+        $("#pagination").html("");
+        return;
+    }
+
+    let html = `
+        <nav aria-label="Pagination">
+            <ul class="pagination justify-content-center">
+    `;
+
+    pagination.forEach(link => {
+        const disabled = link.url === null ? "disabled" : "";
+        const active = link.active ? "active" : "";
+
+        html += `
+            <li class="page-item ${disabled} ${active}">
+                <a class="page-link" href="#" data-url="${link.url}">
+                    ${link.label}
+                </a>
+            </li>
+        `;
+    });
+
+    html += `
+            </ul>
+        </nav>
+    `;
+
+    $("#pagination").html(html);
+}
+
 const COLOR_MAP = {
     rojo:              { label: "Rojo", css: "#c1121f" },
     azul:              { label: "Azul", css: "#003566" },

@@ -9,6 +9,7 @@ function fetchCars(filters = {}) {
         success: function (response) {
             cars = response.data;
             renderCars();
+            renderPagination(response.links);
         },
         error: function () {
             $("#cars").html(`

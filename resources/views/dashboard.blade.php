@@ -11,6 +11,7 @@
     
     <div id="cars">
     </div>
+    <div id="pagination" class="mt-4"></div>
     
     <x-organisms.create-car-form />
     <x-organisms.update-car-form />
