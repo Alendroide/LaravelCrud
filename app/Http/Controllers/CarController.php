@@ -28,6 +28,7 @@ class CarController extends Controller
             ->when($request->max_price, function ($q) use ($request) {
                 $q->where('price', '<=', $request->max_price);
             })
+            ->where('status', true)
             ->orderBy('views', 'desc')
             ->paginate(12)
             ->withQueryString();
@@ -134,6 +135,10 @@ class CarController extends Controller
     }
 
     public function myVehicles() {
-        return Car::where('owner_id', auth()->id())->orderBy('id', 'desc')->paginate(12);
+        return Car::where('owner_id', auth()->id())->orderBy('views', 'desc')->paginate(12);
+    }
+
+    public function myArchives() {
+        return Car::where('owner_id', auth()->id())->where('status', false)->orderBy('views', 'desc')->paginate(12);
     }
 }
