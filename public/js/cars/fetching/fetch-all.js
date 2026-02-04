@@ -1,4 +1,9 @@
+let currentFilters = {};
+
 function fetchCars(filters = {}) {
+    
+    currentFilters = filters;
+
     $("#loading-cars").show();
 
     $.ajax({
@@ -37,5 +42,15 @@ $(document).ready(function() {
     $("#clear-filters").on("click", function () {
         $("#car-filters")[0].reset();
         fetchCars();
+    });
+
+    $("#download-excel").on("click", function () {
+        let url = "/cars/export";
+
+        if (currentFilters && currentFilters.length > 0) {
+            url += "?" + currentFilters;
+        }
+
+        window.location.href = url;
     });
 });

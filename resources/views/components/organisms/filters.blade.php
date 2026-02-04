@@ -22,6 +22,10 @@
                 Limpiar
             </button>
 
+            <button type="button" id="download-excel" class="btn btn-success">
+                Descargar Excel
+            </button>
+
         </form>
     </div>
 </div>

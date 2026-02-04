@@ -38,6 +38,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // API
 
-Route::middleware('auth')->resource('/cars', CarController::class);
 Route::middleware('auth')->get('/get-user-vehicles', [CarController::class, 'myVehicles']);
 Route::middleware('auth')->get('/get-archive-vehicles', [CarController::class, 'myArchives']);
+Route::middleware('auth')->get('/cars/export', [CarController::class, 'exportExcel']);
+Route::middleware('auth')->resource('/cars', CarController::class);

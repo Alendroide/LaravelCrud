@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 
+use App\Exports\CarsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class CarController extends Controller
 {
     public function index(Request $request)
@@ -195,5 +198,12 @@ class CarController extends Controller
 
     public function myArchives() {
         return Car::where('owner_id', auth()->id())->where('status', false)->orderBy('views', 'desc')->paginate(12);
+    }
+
+    public function exportExcel(Request $request) {
+        return Excel::download(
+            new CarsExport($request),
+            'vehiculos.xlsx'
+        );
     }
 }
