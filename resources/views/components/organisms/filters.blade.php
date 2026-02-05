@@ -1,4 +1,4 @@
-<div class="card my-3">
+<div class="card mb-3">
     <div class="card-body">
         <form id="car-filters" class="d-flex flex-wrap gap-2">
 
