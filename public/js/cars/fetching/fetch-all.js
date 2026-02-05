@@ -13,7 +13,7 @@ function fetchCars(filters = {}) {
         dataType: "json",
         success: function (response) {
             cars = response.data;
-            renderCars();
+            renderCars(false, true);
             renderPagination(response.links);
         },
         error: function () {

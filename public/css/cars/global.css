@@ -11,7 +11,6 @@
     width: 16rem;
     height: 16rem;
     background-color: rgb(240,240,240);
-    overflow: hidden;
     border-radius: 1rem;
     transition: all 200ms;
     cursor: pointer;
@@ -40,6 +39,43 @@
 .edit-button:hover {
     background-color: rgb(200,200,200);
     box-shadow: 0px 0px 2px black;
+}
+
+.add-to-cart-button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 1rem 0 0;
+    top: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: rgb(50,150,50);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 200ms
+}
+
+.add-to-cart-button:hover {
+    background-color: rgb(30,130,30);
+    box-shadow: 0px 0px 5px black;
+}
+
+.cart-quantity {
+    position: absolute;
+    top: -.5rem;
+    right: -.5rem;
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: .75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .car-image {
