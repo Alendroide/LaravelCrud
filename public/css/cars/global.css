@@ -82,6 +82,7 @@
     width: 16rem;
     height: 8rem;
     object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .car-info {
