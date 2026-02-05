@@ -4,8 +4,8 @@
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="id" />
 
-        <x-atoms.custom-input type="text" minLength="3" maxLength="255" name="brand"  placeholder="Marca" required />
-        <x-atoms.custom-input type="text" maxLength="255" name="line"   placeholder="Linea" required />
+        <x-atoms.custom-input type="text" minLength="3" maxLength="15" name="brand"  placeholder="Marca" required />
+        <x-atoms.custom-input type="text" maxLength="15" name="line"   placeholder="Linea" required />
         <x-atoms.custom-input type="number" min="1980" max="2026" name="model"  placeholder="Modelo" required />
         <x-atoms.custom-input type="text" minLength="6" maxLength="8" name="plate" placeholder="Placa" required />
         <x-organisms.select-color class="custom-input" required/>
