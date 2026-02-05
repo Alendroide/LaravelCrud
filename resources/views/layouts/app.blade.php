@@ -6,17 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $pageTitle }} | AutoHub</title>
-    <script src="{{ asset('/js/jquery-4.0.0.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('/js/messages_es.min.js') }}"></script>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- JQUERY -->
+    <script src="{{ asset('/js/lib/jquery-4.0.0.min.js') }}"></script>
+    <script src="{{ asset('/js/lib/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('/js/lib/messages_es.min.js') }}"></script>
+    
+    <!-- BOOTSTRAP -->
+    <script src="{{ asset("/js/lib/bootstrap.bundle.min.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset("/css/lib/bootstrap.min.css") }}">
+
     <script>
         window.AUTH_USER_ID = {{ auth()->id() ?? 'null' }};
     </script>
     <link rel="stylesheet" href="{{ asset('/css/global.css') }}">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <!-- BOOTSTRAP -->
-    <script src="{{ asset("/js/bootstrap.bundle.min.js") }}"></script>
-    <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}">
     <script src="{{ asset("/js/utils.js") }}"></script>
     <script src="{{ asset("/js/cars/utils.js") }}"></script>
 </head>
