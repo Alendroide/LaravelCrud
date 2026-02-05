@@ -1,11 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
-    <x-atoms.custom-button id="upload-car-button" color="success-button" style="margin-left: auto;" >
-        <x-icons.plus />
-        Sube tu vehículo
-    </x-atoms.custom-button>
-
     <x-organisms.filters />
     <x-atoms.spinner id="loading-cars"/>
     

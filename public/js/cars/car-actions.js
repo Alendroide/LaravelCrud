@@ -90,6 +90,7 @@ $(document).ready(function() {
     
     $("#create-car-form").on("submit", function (e) {
         e.preventDefault();
+        if(!$(this).valid()) return;
         const form = this;
         const formData = new FormData(this);
         $.ajax({
@@ -102,6 +103,8 @@ $(document).ready(function() {
                 $("#upload-car-modal").removeClass("show");
                 cars = [response, ...cars];
                 renderCars();
+                showToast("Vehículo creado exitosamente", "success");
+                // Reset
                 form.reset();
                 photosFiles = [];
                 $("#photo-previews").html("");
@@ -122,6 +125,7 @@ $(document).ready(function() {
     
     $("#update-car-form").on("submit", function (e) {
         e.preventDefault();
+        if(!$(this).valid()) return;
         const formData = new FormData(this);
         const id = $(this).find("input[name='id']").val();
         $.ajax({
@@ -134,6 +138,7 @@ $(document).ready(function() {
                 $("#update-car-modal").removeClass("show");
                 cars = cars.map(car => car.id === response.id ? response : car);
                 renderCars();
+                showToast("Vehículo actualizado exitosamente", "success");
             },
             error: function(xhr, status, error) {
                 if (xhr.status === 422 && xhr.responseJSON?.errors) {
