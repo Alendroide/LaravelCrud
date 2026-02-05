@@ -101,18 +101,31 @@ body:not(.sidebar-state) #sidebar-overlay {
     height: 2rem;
 }
 
-#welcome-text {
-    display: none;
+#navbar-right {
+    display: flex;
+    align-items: center;
     margin-left: auto;
     margin-right: 1rem;
+    gap: 1.5rem;
+}
+
+#welcome-text {
+    display: none;
     font-weight: 700;
     margin-bottom: 0;
 }
 
-#logout-icon {
-    margin-left: auto;
-    margin-right: 1rem;
+#logout-icon, #cart-icon {
     color: white;
+    transition: all 200ms;
+}
+
+#logout-icon:hover {
+    color: red;
+}
+
+#cart-icon:hover {
+    color: rgb(0, 255, 0);
 }
 
 #content {
@@ -295,10 +308,6 @@ body:not(.sidebar-state) #sidebar-overlay {
 
     #welcome-text {
         display: inline;
-    }
-
-    #logout-icon {
-        margin-left: 0;
     }
 
     #content {
