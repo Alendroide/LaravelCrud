@@ -73,13 +73,14 @@ function saveCart(cart) {
     localStorage.setItem("carts", JSON.stringify(carts));
 }
 
-function addToCart(productId) {
+function addToCart(carId) {
+    const car = cars.find(c => c.id === carId);
     const cart = getCart();
-    const item = cart.items.find(i => i.id === productId);
+    const item = cart.items.find(i => i.id === car.id);
     if (item) {
         item.amount += 1;
     } else {
-        cart.items.push({ id: productId, amount: 1 });
+        cart.items.push({ ...car, amount: 1 });
     }
     saveCart(cart);
 }
