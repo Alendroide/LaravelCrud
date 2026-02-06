@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\DB;
 
 use App\Exports\CarsExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -53,25 +54,28 @@ class CarController extends Controller
                 'price' => 'nullable|numeric',
             ]);
 
-            $photoPaths = [];
+            $car = DB::transaction(function () use ($request, $data) {
 
-            if ($request->hasFile('photos')) {
-                foreach ($request->file('photos') as $photo) {
-                    $path = $photo->store('cars', 'public');
-                    $photoPaths[] = $path;
+                $photoPaths = [];
+
+                if ($request->hasFile('photos')) {
+                    foreach ($request->file('photos') as $photo) {
+                        $path = $photo->store('cars', 'public');
+                        $photoPaths[] = $path;
+                    }
                 }
-            }
 
-            $car = Car::create([
-                'brand'    => $data['brand'],
-                'line'     => $data['line'],
-                'model'    => $data['model'],
-                'color'    => $data['color'],
-                'plate'    => $data['plate'],
-                'photos'   => $photoPaths,
-                'owner_id' => auth()->id(),
-                'price'    => $data['price'],
-            ]);
+                return Car::create([
+                    'brand'    => $data['brand'],
+                    'line'     => $data['line'],
+                    'model'    => $data['model'],
+                    'color'    => $data['color'],
+                    'plate'    => $data['plate'],
+                    'photos'   => $photoPaths,
+                    'owner_id' => auth()->id(),
+                    'price'    => $data['price'],
+                ]);
+            });
 
             return response()->json($car, 201);
         } catch (ValidationException $e) {
@@ -118,30 +122,35 @@ class CarController extends Controller
                 'price' => 'nullable|numeric',
             ]);
 
-            $currentPhotos = $car->photos ?? [];
+            $car = DB::transaction(function () use ($request, $car, $data) {
 
-            if (!empty($data['deleted_photos'])) {
-                $currentPhotos = array_values(
-                    array_diff($currentPhotos, $data['deleted_photos'])
-                );
-            }
+                $currentPhotos = $car->photos ?? [];
 
-            if ($request->hasFile('photos')) {
-                foreach ($request->file('photos') as $photo) {
-                    $path = $photo->store('cars', 'public');
-                    $currentPhotos[] = $path;
+                if (!empty($data['deleted_photos'])) {
+                    $currentPhotos = array_values(
+                        array_diff($currentPhotos, $data['deleted_photos'])
+                    );
                 }
-            }
 
-            $car->update([
-                'brand'  => $data['brand'],
-                'line'   => $data['line'],
-                'model'  => $data['model'],
-                'color'  => $data['color'],
-                'plate'  => $data['plate'],
-                'photos' => $currentPhotos,
-                'price'  => $data['price'],
-            ]);
+                if ($request->hasFile('photos')) {
+                    foreach ($request->file('photos') as $photo) {
+                        $path = $photo->store('cars', 'public');
+                        $currentPhotos[] = $path;
+                    }
+                }
+
+                $car->update([
+                    'brand'  => $data['brand'],
+                    'line'   => $data['line'],
+                    'model'  => $data['model'],
+                    'color'  => $data['color'],
+                    'plate'  => $data['plate'],
+                    'photos' => $currentPhotos,
+                    'price'  => $data['price'],
+                ]);
+
+                return $car;
+            });
 
             return response()->json($car);
         } catch (ValidationException $e) {

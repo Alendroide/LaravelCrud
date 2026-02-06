@@ -1,7 +1,7 @@
 function renderPurchasedCars() {
     getPurchasedCars()
         .done(cars => {
-            console.log(cars);
+            $("#loading-cars").remove();
 
             if (!cars || cars.length === 0) {
                 $("#purchased-cars").html("<p>No has comprado vehículos aún.</p>");

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <p class="fs-3 fw-bold">Mis compras</p>
+    
+    <x-atoms.spinner id="loading-cars"/>
+
     <div id="purchased-cars">
     </div>
 
