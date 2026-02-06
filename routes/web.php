@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\PurchaseController;
 
 Route::middleware("auth")->get('/', function () {
     return view('dashboard', [
@@ -48,3 +49,4 @@ Route::middleware('auth')->get('/get-user-vehicles', [CarController::class, 'myV
 Route::middleware('auth')->get('/get-archive-vehicles', [CarController::class, 'myArchives']);
 Route::middleware('auth')->get('/cars/export', [CarController::class, 'exportExcel']);
 Route::middleware('auth')->resource('/cars', CarController::class);
+Route::middleware('auth')->post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');

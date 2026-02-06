@@ -141,16 +141,29 @@ function checkoutCart() {
     const cart = getCart();
 
     $.ajax({
-        url: "/checkout/",
+        url: "/purchase",
         method: "POST",
         data: {
             cart: cart
         },
-        success: function () {
-            alert("Compra enviada (fake) 🚀");
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        error: function () {
-            alert("Error al procesar la compra");
+        success(res) {
+            showToast("Compra realizada con éxito", "success");
+            saveCart({ user: window.AUTH_USER_ID, items: [] });
+            window.location.href = "/";
+        },
+        error(xhr, status, error) {
+            let message = "Error al realizar la compra";
+            if (xhr.status === 422 && xhr.responseJSON?.errors) {
+                const errors = Object.values(xhr.responseJSON.errors).flat();
+                message = errors[0];
+            }
+            else if (xhr.responseJSON?.message) {
+                message = xhr.responseJSON.message;
+            }
+            showToast(message, "error");
         }
     });
 }
