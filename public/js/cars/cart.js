@@ -152,7 +152,7 @@ function checkoutCart() {
         success(res) {
             showToast("Compra realizada con éxito", "success");
             saveCart({ user: window.AUTH_USER_ID, items: [] });
-            window.location.href = "/";
+            window.location.href = "mis-compras";
         },
         error(xhr, status, error) {
             let message = "Error al realizar la compra";
