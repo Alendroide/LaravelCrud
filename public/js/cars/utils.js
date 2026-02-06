@@ -123,3 +123,9 @@ function compressImage(file, maxSizeKB = 120, maxWidth = 1920) {
         reader.readAsDataURL(file);
     });
 }
+
+function updateCartTotalItems() {
+    $(".total-cart-quantity").html(
+        getCart().items.reduce((sum, i) => sum + i.amount, 0)
+    );
+}

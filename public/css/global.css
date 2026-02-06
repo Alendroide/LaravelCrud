@@ -120,6 +120,10 @@ body:not(.sidebar-state) #sidebar-overlay {
     transition: all 200ms;
 }
 
+#cart-icon {
+    position: relative;
+}
+
 #logout-icon:hover {
     color: red;
 }

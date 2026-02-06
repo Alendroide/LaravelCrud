@@ -19,7 +19,7 @@ function renderCars(showEditButton = false, cartAdd = false) {
                     </div>` : ""
                 }
                 ${cartAdd ?
-                    `<div class="add-to-cart-button" onclick="addToCart(${car.id}); renderCars(${showEditButton}, ${cartAdd});">
+                    `<div class="add-to-cart-button" onclick="addToCart(${car.id}); renderCars(${showEditButton}, ${cartAdd}); updateCartTotalItems();">
                         ${quantity > 0 ?
                             `<span class="cart-quantity">${quantity}</span>` : ""
                         }
@@ -52,6 +52,8 @@ function showUpdateModal(id) {
 }
 
 $(document).ready(function() {
+
+    updateCartTotalItems();
 
     // Pagination logic
 
