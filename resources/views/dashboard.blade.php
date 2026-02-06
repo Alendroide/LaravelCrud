@@ -10,7 +10,8 @@
     <x-organisms.create-car-form />
     <x-organisms.update-car-form />
 
-    <script src="{{ asset("/js/cars/car-actions.js") }}"></script>
-    <script src="{{ asset("/js/cars/fetching/fetch-all.js") }}"></script>
-    <link rel="stylesheet" href="{{ asset("/css/cars/global.css") }}">
+    <script src="{{  asset("js/cars/cart.js") }}"></script>
+    <script src="{{ asset("js/cars/car-actions.js") }}"></script>
+    <script src="{{ asset("js/cars/fetching/fetch-all.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset("css/cars/global.css") }}">
 @endsection

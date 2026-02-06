@@ -51,41 +51,6 @@ function showUpdateModal(id) {
     loadUpdateCarPhotos(car.photos);
 }
 
-function getCart() {
-    const carts = JSON.parse(localStorage.getItem("carts")) || [];
-    let cart = carts.find(c => c.user === window.AUTH_USER_ID);
-    if (!cart) {
-        cart = { user: window.AUTH_USER_ID, items: [] };
-        carts.push(cart);
-        localStorage.setItem("carts", JSON.stringify(carts));
-    }
-    return cart;
-}
-
-function saveCart(cart) {
-    const carts = JSON.parse(localStorage.getItem("carts")) || [];
-    const index = carts.findIndex(c => c.user === cart.user);
-    if (index > -1) {
-        carts[index] = cart;
-    } else {
-        carts.push(cart);
-    }
-    localStorage.setItem("carts", JSON.stringify(carts));
-}
-
-function addToCart(carId) {
-    const car = cars.find(c => c.id === carId);
-    const cart = getCart();
-    const item = cart.items.find(i => i.id === car.id);
-    if (item) {
-        item.amount += 1;
-    } else {
-        cart.items.push({ ...car, amount: 1 });
-    }
-    saveCart(cart);
-}
-
-
 $(document).ready(function() {
 
     // Pagination logic
