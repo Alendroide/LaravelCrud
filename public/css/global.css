@@ -128,7 +128,7 @@ body:not(.sidebar-state) #sidebar-overlay {
     color: red;
 }
 
-#cart-icon:hover {
+#cart-icon:hover, #cart-icon.active-cart {
     color: rgb(0, 255, 0);
 }
 
