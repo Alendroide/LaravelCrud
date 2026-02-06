@@ -129,3 +129,10 @@ function updateCartTotalItems() {
         getCart().items.reduce((sum, i) => sum + i.amount, 0)
     );
 }
+
+function getPurchasedCars() {
+    return $.ajax({
+        url: "/my-purchases/cars",
+        method: "GET"
+    });
+}

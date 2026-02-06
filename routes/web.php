@@ -35,6 +35,12 @@ Route::middleware("auth")->get("/cart", function() {
     ]);
 })->name("cart");
 
+Route::middleware("auth")->get("/mis-compras", function() {
+    return view('bought-cars', [
+        "pageTitle" => "Mis compras"
+    ]);
+})->name("bought-cars");
+
 // AUTH
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
