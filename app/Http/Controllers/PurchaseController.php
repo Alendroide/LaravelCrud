@@ -31,6 +31,7 @@ class PurchaseController extends Controller
                     'price' => $item['price'],
                     'quantity' => $item['quantity'],
                     'subtotal' => $item['subtotal'],
+                    'photos' => $item['photos'] ?? [],
                 ];
             }
         }
@@ -68,6 +69,7 @@ class PurchaseController extends Controller
                     'price' => $price,
                     'quantity' => $item['amount'],
                     'subtotal' => $subtotal,
+                    'photos' => $car->photos ?? [],
                 ];
             }
 
