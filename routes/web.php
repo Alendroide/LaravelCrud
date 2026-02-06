@@ -50,3 +50,4 @@ Route::middleware('auth')->get('/get-archive-vehicles', [CarController::class, '
 Route::middleware('auth')->get('/cars/export', [CarController::class, 'exportExcel']);
 Route::middleware('auth')->resource('/cars', CarController::class);
 Route::middleware('auth')->post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
+Route::middleware('auth')->get('/my-purchases/cars', [PurchaseController::class, 'myCars'])->name('purchases.cars');

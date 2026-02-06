@@ -9,6 +9,35 @@ use DB;
 
 class PurchaseController extends Controller
 {
+
+    public function myCars(Request $request)
+    {
+        $user = $request->user();
+
+        $purchases = Purchase::where('user_id', $user->id)
+            ->latest()
+            ->get();
+        $cars = [];
+
+        foreach ($purchases as $purchase) {
+            foreach ($purchase->items as $item) {
+                $cars[] = [
+                    'purchase_id' => $purchase->id,
+                    'purchased_at' => $purchase->created_at,
+                    'id' => $item['id'],
+                    'brand' => $item['brand'] ?? null,
+                    'line' => $item['line'] ?? null,
+                    'model' => $item['model'] ?? null,
+                    'price' => $item['price'],
+                    'quantity' => $item['quantity'],
+                    'subtotal' => $item['subtotal'],
+                ];
+            }
+        }
+
+        return response()->json($cars);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
