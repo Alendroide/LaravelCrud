@@ -210,9 +210,16 @@ class CarController extends Controller
     }
 
     public function exportExcel(Request $request) {
-        return Excel::download(
+        $token = $request->query('downloadToken');
+        $response = Excel::download(
             new CarsExport($request),
             'vehiculos.xlsx'
         );
+        if ($token) {
+            $response->headers->setCookie(
+                cookie('downloadToken', $token, 1, '/', null, false, false)
+            );
+        }
+        return $response;
     }
 }
