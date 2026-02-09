@@ -11,16 +11,21 @@ class Purchase extends Model
 
     protected $fillable = [
         'user_id',
-        'items',
         'total',
-    ];
-
-    protected $casts = [
-        'items' => 'array',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function cars()
+    {
+        return $this->belongsToMany(
+            Car::class,
+            'purchase_items'
+        )
+        ->withPivot('amount')
+        ->withTimestamps();
     }
 }

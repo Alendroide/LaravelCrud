@@ -30,4 +30,13 @@ class Car extends Model
         return $this->belongsTo(User::class, 'owner_id');
     }
 
+    public function purchases()
+    {
+        return $this->belongsToMany(
+            Purchase::class,
+            'purchase_items'
+        )
+        ->withPivot('amount')
+        ->withTimestamps();
+    }
 }

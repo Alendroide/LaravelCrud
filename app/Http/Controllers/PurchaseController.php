@@ -14,24 +14,32 @@ class PurchaseController extends Controller
     {
         $user = $request->user();
 
-        $purchases = Purchase::where('user_id', $user->id)
+        $purchases = Purchase::with('cars')
+            ->where('user_id', $user->id)
             ->latest()
             ->get();
+
         $cars = [];
 
         foreach ($purchases as $purchase) {
-            foreach ($purchase->items as $item) {
+            foreach ($purchase->cars as $car) {
+                $amount = $car->pivot->amount;
+                $subtotal = $car->price * $amount;
+
                 $cars[] = [
                     'purchase_id' => $purchase->id,
                     'purchased_at' => $purchase->created_at,
-                    'id' => $item['id'],
-                    'brand' => $item['brand'] ?? null,
-                    'line' => $item['line'] ?? null,
-                    'model' => $item['model'] ?? null,
-                    'price' => $item['price'],
-                    'quantity' => $item['quantity'],
-                    'subtotal' => $item['subtotal'],
-                    'photos' => $item['photos'] ?? [],
+
+                    'id' => $car->id,
+                    'brand' => $car->brand,
+                    'line' => $car->line,
+                    'model' => $car->model,
+                    'price' => $car->price,
+
+                    'quantity' => $amount,
+                    'subtotal' => $subtotal,
+
+                    'photos' => $car->photos ?? [],
                 ];
             }
         }
@@ -48,42 +56,32 @@ class PurchaseController extends Controller
         ]);
 
         $user = $request->user();
-        $items = [];
         $total = 0;
 
         DB::beginTransaction();
 
         try {
             foreach ($request->cart['items'] as $item) {
-                $car = Car::lockForUpdate()->find($item['id']);
-
-                $price = $car->price;
-                $subtotal = $price * $item['amount'];
-                $total += $subtotal;
-
-                $items[] = [
-                    'id' => $car->id,
-                    'brand' => $car->brand,
-                    'line' => $car->line,
-                    'model' => $car->model,
-                    'price' => $price,
-                    'quantity' => $item['amount'],
-                    'subtotal' => $subtotal,
-                    'photos' => $car->photos ?? [],
-                ];
+                $car = Car::lockForUpdate()->findOrFail($item['id']);
+                $total += $car->price * $item['amount'];
             }
 
             $purchase = Purchase::create([
                 'user_id' => $user->id,
-                'items' => $items,
                 'total' => $total,
             ]);
+
+            foreach ($request->cart['items'] as $item) {
+                $purchase->cars()->attach($item['id'], [
+                    'amount' => $item['amount'],
+                ]);
+            }
 
             DB::commit();
 
             return response()->json([
                 'message' => 'Purchase created successfully',
-                'purchase' => $purchase,
+                'purchase_id' => $purchase->id,
             ], 201);
 
         } catch (\Throwable $e) {
