@@ -24,7 +24,7 @@
         <div id="deleted-photos-container"></div>
 
         <div>
-            <x-atoms.custom-button type="submit" color="success-button">
+            <x-atoms.custom-button id="update-car-button" type="submit" color="success-button">
                 Guardar vehiculo
             </x-atoms.custom-button>
         </div>

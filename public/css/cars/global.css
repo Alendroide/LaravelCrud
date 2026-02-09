@@ -214,6 +214,11 @@ body:not(.sidebar-state) #sidebar-overlay {
     background-color: rgb(30, 30, 150);
 }
 
+.disabled-button {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .custom-input {
     width: 100%;
     padding: 1rem;

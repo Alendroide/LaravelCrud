@@ -17,7 +17,7 @@
             style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;"
         ></div>
         <div>
-            <x-atoms.custom-button type="submit" color="success-button">
+            <x-atoms.custom-button id="save-car-button" type="submit" color="success-button">
                 Guardar vehiculo
             </x-atoms.custom-button>
         </div>
