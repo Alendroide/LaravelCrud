@@ -38,6 +38,9 @@ function showUpdateModal(id) {
     $("#update-car-form select[name='color']").val(car.color);
     $("#update-car-form input[name='price']").val(car.price);
     $("#update-car-form .visual-price").val(formatPrice(car.price))
+    const taxPercent = ((car.tax ?? 0) * 100).toFixed(2);
+    $("#update-car-form .visual-tax").val(taxPercent);
+    $("#update-car-form .real-tax").val(car.tax ?? 0);
     loadUpdateCarPhotos(car.photos);
 }
 
@@ -66,6 +69,11 @@ $(document).ready( function () {
         }
         let formattedValue = formatPrice(value);
         $(this).val(formattedValue);
+    });
+
+    $(".visual-tax").on("input", function () {
+        const percent = parseFloat(this.value) || 0;
+        $(this).siblings(".real-tax").val((percent / 100).toFixed(4));
     });
     
     // Submit logic

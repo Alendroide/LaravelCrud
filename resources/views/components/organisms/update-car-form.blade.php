@@ -14,6 +14,17 @@
         <input type="hidden" name="price" class="real-price" />
 
         <input
+            type="number"
+            class="custom-input visual-tax"
+            placeholder="Impuesto (%)"
+            min="0"
+            max="100"
+            step="0.01"
+            required
+        />
+        <input type="hidden" name="tax" class="real-tax" />
+
+        <input
             type="file"
             id="update-photos-input"
             name="photos[]"

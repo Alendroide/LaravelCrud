@@ -6,9 +6,20 @@
         <x-atoms.custom-input type="number" min="1980" max="2026" name="model" placeholder="Modelo" required />
         <x-atoms.custom-input type="text" minLength="6" maxLength="8" name="plate" placeholder="Placa" required />
         <x-organisms.select-color class="custom-input" required/>
-        
+
         <input type="text" class="custom-input visual-price" placeholder="Precio" required />
         <input type="hidden" name="price" class="real-price" />
+
+        <input
+            type="number"
+            class="custom-input visual-tax"
+            placeholder="Impuesto (%)"
+            min="0"
+            max="100"
+            step="0.01"
+            required
+        />
+        <input type="hidden" name="tax" class="real-tax" />
 
         <input id="photos-input" type="file" name="photos[]" multiple accept="image/png,image/jpeg,image/webp" max="7" />
         <div

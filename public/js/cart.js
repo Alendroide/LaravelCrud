@@ -11,7 +11,9 @@ function renderCartList() {
 
     $("#cart").html(
         cart.items.map(item => {
-            const subtotal = item.price * item.amount;
+            const unitTaxAmount = item.price * item.tax;
+            const unitPriceWithTax = item.price + unitTaxAmount;
+            const subtotal = unitPriceWithTax * item.amount;
             total += subtotal;
 
             return `
@@ -32,7 +34,11 @@ function renderCartList() {
                         <p><b>Color:</b> ${item.color}</p>
 
                         <div class="price">
-                            ${formatPrice(item.price)} x ${item.amount}
+                            ${formatPrice(item.price)} + ${formatPrice(unitTaxAmount)} (${item.tax * 100}%)
+                        </div>
+
+                        <div class="price">
+                            ${formatPrice(unitPriceWithTax)} x ${item.amount}
                         </div>
 
                         <div class="subtotal">

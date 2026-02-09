@@ -25,7 +25,7 @@
 .purchase-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .purchase-header {
@@ -38,6 +38,7 @@
 .purchase-header h5 {
     margin: 0;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .purchase-date {
@@ -47,14 +48,34 @@
 }
 
 .purchase-prices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 12px;
+    font-size: .9rem;
+}
+
+.purchase-prices > div {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .95rem;
+    flex-direction: column;
+}
+
+.purchase-prices small {
+    font-size: .7rem;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.purchase-prices span {
+    font-weight: 500;
 }
 
 .purchase-prices strong {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed #ddd;
     font-size: 1.05rem;
+    text-align: right;
 }
 
 .purchase-client {
@@ -65,7 +86,7 @@
 }
 
 .purchase-client span {
-    font-size: .75rem;
+    font-size: .7rem;
     text-transform: uppercase;
     color: #666;
 }
@@ -100,8 +121,10 @@
     }
 
     .purchase-prices {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        grid-template-columns: 1fr;
+    }
+
+    .purchase-prices strong {
+        text-align: left;
     }
 }
