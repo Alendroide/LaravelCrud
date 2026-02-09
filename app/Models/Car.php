@@ -18,6 +18,7 @@ class Car extends Model
         'photos',
         'owner_id',
         'price',
+        'tax',
         'views',
     ];
 

@@ -52,6 +52,7 @@ class CarController extends Controller
                 'photos'   => 'nullable|array|max:7',
                 'photos.*' => 'image|max:2048',
                 'price' => 'nullable|numeric',
+                'tax' => 'nullable|numeric',
             ]);
 
             $car = DB::transaction(function () use ($request, $data) {
@@ -74,6 +75,7 @@ class CarController extends Controller
                     'photos'   => $photoPaths,
                     'owner_id' => auth()->id(),
                     'price'    => $data['price'],
+                    'tax'      => $data['tax'],
                 ]);
             });
 
@@ -120,6 +122,7 @@ class CarController extends Controller
                 'deleted_photos' => 'nullable|array',
                 'deleted_photos.*' => 'string',
                 'price' => 'nullable|numeric',
+                'tax' => 'nullable|numeric',
             ]);
 
             $car = DB::transaction(function () use ($request, $car, $data) {
@@ -147,6 +150,7 @@ class CarController extends Controller
                     'plate'  => $data['plate'],
                     'photos' => $currentPhotos,
                     'price'  => $data['price'],
+                    'tax'    => $data['tax'],
                 ]);
 
                 return $car;

@@ -25,7 +25,7 @@ class PurchaseController extends Controller
         foreach ($purchases as $purchase) {
             foreach ($purchase->cars as $car) {
                 $amount = $car->pivot->amount;
-                $subtotal = $car->price * $amount;
+                $subtotal = ($car->price * (1 + $car->tax)) * $amount;
 
                 $cars[] = [
                     'purchase_id' => $purchase->id,
@@ -43,6 +43,7 @@ class PurchaseController extends Controller
                         'line' => $car->line,
                         'model' => $car->model,
                         'price' => $car->price,
+                        'tax' => $car->tax,
                         'photos' => $car->photos ?? [],
                     ],
 
@@ -77,7 +78,7 @@ class PurchaseController extends Controller
             );
             foreach ($request->cart['items'] as $item) {
                 $car = Car::lockForUpdate()->findOrFail($item['id']);
-                $total += $car->price * $item['amount'];
+                $total += round(($car->price * (1 + $car->tax)) * $item['amount']);
             }
 
             $purchase = Purchase::create([
