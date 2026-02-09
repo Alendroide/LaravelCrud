@@ -16,7 +16,7 @@ $(document).ready(function() {
             `);
         },
         complete: function (){
-            $("#loading-cars").remove();
+            $("#loading-cars").hide();
         }
     });
 });

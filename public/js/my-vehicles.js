@@ -1,3 +1,32 @@
+function fetchCars(filters = {}) {
+    
+    currentFilters = filters;
+
+    $("#loading-cars").show();
+
+    $.ajax({
+        url: "/get-user-vehicles",
+        type: "GET",
+        data: filters,
+        dataType: "json",
+        success: function (response) {
+            cars = response.data;
+            renderCars(true);
+            renderPagination(response.links);
+        },
+        error: function () {
+            $("#cars").html(`
+                <div class="error">
+                    Error buscando vehículos!
+                </div>
+            `);
+        },
+        complete: function () {
+            $("#loading-cars").hide();
+        }
+    });
+}
+
 function showUpdateModal(id) {
     $("#update-car-modal").addClass("show");
     let car = cars.find(car => car.id === id);
@@ -46,6 +75,11 @@ $(document).ready( function () {
         if(!$(this).valid()) return;
         const form = this;
         const formData = new FormData(this);
+        $("#save-car-button").prop("disabled", true).html(`
+            <div style="width: 2rem; height: 2rem;">
+                <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg>
+            </div>`
+        ).addClass("disabled-button");
         $.ajax({
             url: "/cars",
             type: "POST",
@@ -72,6 +106,9 @@ $(document).ready( function () {
                 } else {
                     showToast("Error inesperado, intenta de nuevo", "error");
                 }
+            },
+            complete: function() {
+                $("#save-car-button").prop("disabled", false).html("Guardar vehiculo").removeClass("disabled-button");
             }
         })
     })
@@ -81,6 +118,11 @@ $(document).ready( function () {
         if(!$(this).valid()) return;
         const formData = new FormData(this);
         const id = $(this).find("input[name='id']").val();
+        $("#update-car-button").prop("disabled", true).html(`
+            <div style="width: 2rem; height: 2rem;">
+                <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg>
+            </div>`
+        ).addClass("disabled-button");
         $.ajax({
             url: "/cars/" + id,
             type: "POST",
@@ -103,6 +145,9 @@ $(document).ready( function () {
                 } else {
                     showToast("Error inesperado, intenta de nuevo", "error");
                 }
+            },
+            complete: function() {
+                $("#update-car-button").prop("disabled", false).html("Guardar vehiculo").removeClass("disabled-button");
             }
         })
     })
