@@ -14,7 +14,7 @@ class PurchaseController extends Controller
     {
         $user = $request->user();
 
-        $purchases = Purchase::with('cars')
+        $purchases = Purchase::with(['cars', 'client'])
             ->where('user_id', $user->id)
             ->latest()
             ->get();
@@ -30,16 +30,23 @@ class PurchaseController extends Controller
                     'purchase_id' => $purchase->id,
                     'purchased_at' => $purchase->created_at,
 
-                    'id' => $car->id,
-                    'brand' => $car->brand,
-                    'line' => $car->line,
-                    'model' => $car->model,
-                    'price' => $car->price,
+                    'client' => [
+                        'id' => $purchase->client->id,
+                        'name' => $purchase->client->name,
+                        'cc' => $purchase->client->cc,
+                    ],
+
+                    'car' => [
+                        'id' => $car->id,
+                        'brand' => $car->brand,
+                        'line' => $car->line,
+                        'model' => $car->model,
+                        'price' => $car->price,
+                        'photos' => $car->photos ?? [],
+                    ],
 
                     'quantity' => $amount,
                     'subtotal' => $subtotal,
-
-                    'photos' => $car->photos ?? [],
                 ];
             }
         }
@@ -50,6 +57,8 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'client.cc' => 'required|string',
+            'client.name' => 'required|string',
             'cart.items' => 'required|array|min:1',
             'cart.items.*.id' => 'required|integer|exists:cars,id',
             'cart.items.*.amount' => 'required|integer|min:1',
@@ -61,6 +70,10 @@ class PurchaseController extends Controller
         DB::beginTransaction();
 
         try {
+            $client = Client::firstOrCreate(
+                ['cc' => $request->client['cc']],
+                ['name' => $request->client['name']]
+            );
             foreach ($request->cart['items'] as $item) {
                 $car = Car::lockForUpdate()->findOrFail($item['id']);
                 $total += $car->price * $item['amount'];
@@ -68,6 +81,7 @@ class PurchaseController extends Controller
 
             $purchase = Purchase::create([
                 'user_id' => $user->id,
+                'client_id' => $client->id,
                 'total' => $total,
             ]);
 
@@ -82,6 +96,7 @@ class PurchaseController extends Controller
             return response()->json([
                 'message' => 'Purchase created successfully',
                 'purchase_id' => $purchase->id,
+                'client' => $client->name,
             ], 201);
 
         } catch (\Throwable $e) {
