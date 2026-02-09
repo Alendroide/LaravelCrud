@@ -1,23 +1,107 @@
-.cart-item {
-    display: flex;
-    align-items: center;
+.purchase-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
     gap: 16px;
-    padding: 12px;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transition: transform .15s ease, box-shadow .15s ease;
 }
 
-.cart-item-image img {
-    width: 120px;
-    height: 90px;
+.purchase-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.purchase-image img {
+    width: 100%;
+    height: 120px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 10px;
 }
 
-.cart-item-info {
-    flex: 1;
+.purchase-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.subtotal {
-    margin-top: 4px;
-    font-weight: bold;
+.purchase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.purchase-header h5 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.purchase-date {
+    font-size: .85rem;
+    color: #888;
+    white-space: nowrap;
+}
+
+.purchase-prices {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .95rem;
+}
+
+.purchase-prices strong {
+    font-size: 1.05rem;
+}
+
+.purchase-client {
+    background: #f8f9fa;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: .9rem;
+}
+
+.purchase-client span {
+    font-size: .75rem;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.purchase-client p {
+    margin: 2px 0;
+    font-weight: 600;
+}
+
+.purchase-client small {
+    color: #777;
+}
+
+.purchase-footer {
+    margin-top: auto;
+    font-size: .8rem;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .purchase-card {
+        grid-template-columns: 1fr;
+    }
+
+    .purchase-image img {
+        height: 180px;
+    }
+
+    .purchase-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .purchase-prices {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
 }

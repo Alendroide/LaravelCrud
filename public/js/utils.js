@@ -186,13 +186,6 @@ function updateCartTotalItems() {
     );
 }
 
-function getPurchasedCars() {
-    return $.ajax({
-        url: "/my-purchases/cars",
-        method: "GET"
-    });
-}
-
 function getCart() {
     const carts = JSON.parse(localStorage.getItem("carts")) || [];
     let cart = carts.find(c => c.user === window.AUTH_USER_ID);

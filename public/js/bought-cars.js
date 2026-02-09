@@ -1,3 +1,10 @@
+function getPurchasedCars() {
+    return $.ajax({
+        url: "/my-purchases/cars",
+        method: "GET"
+    });
+}
+
 function renderPurchasedCars() {
     getPurchasedCars()
         .done(cars => {
@@ -10,35 +17,42 @@ function renderPurchasedCars() {
 
             $("#purchased-cars").html(
                 cars.map(item => `
-                    <div class="cart-item">
+                    <div class="purchase-card">
 
-                        <!-- Imagen -->
-                        <div class="cart-item-image">
-                            <img 
-                                src="${item.photos?.length ? `/storage/${item.photos[0]}` : '/img/default_car.png'}"
-                                alt="${item.brand} ${item.line}"
-                            />
+                    <div class="purchase-image">
+                        <img 
+                            src="${item.car.photos?.length ? `/storage/${item.car.photos[0]}` : '/img/default_car.png'}"
+                            alt="${item.car.brand} ${item.car.line}"
+                        />
+                    </div>
+
+                    <div class="purchase-content">
+
+                        <div class="purchase-header">
+                            <h5>${item.car.brand} ${item.car.line} ${item.car.model}</h5>
+                            <span class="purchase-date">
+                                ${new Date(item.purchased_at).toLocaleDateString()}
+                            </span>
                         </div>
 
-                        <!-- Info -->
-                        <div class="cart-item-info">
-                            <h5>${item.brand} ${item.line} ${item.model}</h5>
+                        <div class="purchase-prices">
+                            <span>${formatPrice(item.car.price)} × ${item.quantity}</span>
+                            <strong>${formatPrice(item.subtotal)}</strong>
+                        </div>
 
-                            <div class="price">
-                                ${formatPrice(item.price)} x ${item.quantity}
-                            </div>
+                        <div class="purchase-client">
+                            <span>Cliente</span>
+                            <p>${item.client.name}</p>
+                            <small>${item.client.cc}</small>
+                        </div>
 
-                            <div class="subtotal">
-                                <b>Subtotal:</b> ${formatPrice(item.subtotal)}
-                            </div>
-
-                            <small class="text-muted">
-                                Compra #${item.purchase_id} · 
-                                ${new Date(item.purchased_at).toLocaleDateString()}
-                            </small>
+                        <div class="purchase-footer">
+                            Compra #${item.purchase_id}
                         </div>
 
                     </div>
+
+                </div>
                 `).join("")
             );
         })
