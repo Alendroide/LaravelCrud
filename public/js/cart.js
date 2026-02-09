@@ -67,6 +67,28 @@ function renderCartList() {
     $("#cart-total").html(`
         <div>
             <h4>Total: ${formatPrice(total)}</h4>
+            <p class="fs-4 mt-2">Cliente:</p>
+            <div class="client-form mb-3 ms-4">
+                <div class="form-group mb-2">
+                    <label for="client-cc">Cédula del cliente</label>
+                    <input
+                        type="text"
+                        id="client-cc"
+                        class="form-control"
+                        placeholder="Ingrese la cédula"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="client-name">Nombre del cliente</label>
+                    <input
+                        type="text"
+                        id="client-name"
+                        class="form-control"
+                        placeholder="Ingrese el nombre"
+                    >
+                </div>
+            </div>
             <button class="btn btn-outline-success d-flex align-items-center" onclick="checkoutCart()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign-icon lucide-dollar-sign"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 Comprar
@@ -105,10 +127,21 @@ function decreaseFromCart(carId) {
 function checkoutCart() {
     const cart = getCart();
 
+    const client = {
+        cc: $("#client-cc").val().trim(),
+        name: $("#client-name").val().trim(),
+    };
+
+    if (!client.cc || !client.name) {
+        showToast("Debe ingresar cédula y nombre del cliente", "error");
+        return;
+    }
+
     $.ajax({
         url: "/purchase",
         method: "POST",
         data: {
+            client: client,
             cart: cart
         },
         headers: {
@@ -124,8 +157,7 @@ function checkoutCart() {
             if (xhr.status === 422 && xhr.responseJSON?.errors) {
                 const errors = Object.values(xhr.responseJSON.errors).flat();
                 message = errors[0];
-            }
-            else if (xhr.responseJSON?.message) {
+            } else if (xhr.responseJSON?.message) {
                 message = xhr.responseJSON.message;
             }
             showToast(message, "error");
@@ -137,4 +169,25 @@ function checkoutCart() {
 
 $(document).ready(function() {
     renderCartList();
+
+    $(document).on("change", "#client-cc", function () {
+        const cc = $(this).val().trim();
+
+        if (!cc) return;
+
+        $.ajax({
+            url: `/clients/${cc}`,
+            method: "GET",
+            success(client) {
+                if (client) {
+                    $("#client-name").val(client.name).prop("readonly", true);
+                } else {
+                    $("#client-name").val("").prop("readonly", false);
+                }
+            },
+            error() {
+                $("#client-name").prop("readonly", false);
+            }
+        });
+    });
 });

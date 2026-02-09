@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Purchase;
+use App\Models\Client;
 use DB;
 
 class PurchaseController extends Controller

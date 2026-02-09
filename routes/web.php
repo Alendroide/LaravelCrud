@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ClientController;
 
 Route::middleware("auth")->get('/', function () {
     return view('dashboard', [
@@ -57,3 +58,4 @@ Route::middleware('auth')->get('/cars/export', [CarController::class, 'exportExc
 Route::middleware('auth')->resource('/cars', CarController::class);
 Route::middleware('auth')->post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
 Route::middleware('auth')->get('/my-purchases/cars', [PurchaseController::class, 'myCars'])->name('purchases.cars');
+Route::middleware('auth')->get('/clients/{cc}', [ClientController::class, 'show'])->name('clients.show');
