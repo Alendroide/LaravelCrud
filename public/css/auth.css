@@ -26,3 +26,40 @@ img {
 a {
     font-size: .75rem;
 }
+
+.custom-input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.custom-button {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    background-color: rgb(200, 200, 200);
+    color: black;
+    border: 0;
+    border-radius: .50rem;
+    padding: .5rem;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.custom-button:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+.primary-button {
+    background-color: rgb(30, 30, 255);
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: rgb(30, 30, 150);
+}
