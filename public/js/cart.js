@@ -1,37 +1,3 @@
-function getCart() {
-    const carts = JSON.parse(localStorage.getItem("carts")) || [];
-    let cart = carts.find(c => c.user === window.AUTH_USER_ID);
-    if (!cart) {
-        cart = { user: window.AUTH_USER_ID, items: [] };
-        carts.push(cart);
-        localStorage.setItem("carts", JSON.stringify(carts));
-    }
-    return cart;
-}
-
-function saveCart(cart) {
-    const carts = JSON.parse(localStorage.getItem("carts")) || [];
-    const index = carts.findIndex(c => c.user === cart.user);
-    if (index > -1) {
-        carts[index] = cart;
-    } else {
-        carts.push(cart);
-    }
-    localStorage.setItem("carts", JSON.stringify(carts));
-}
-
-function addToCart(carId) {
-    const car = cars.find(c => c.id === carId);
-    const cart = getCart();
-    const item = cart.items.find(i => i.id === car.id);
-    if (item) {
-        item.amount += 1;
-    } else {
-        cart.items.push({ ...car, amount: 1 });
-    }
-    saveCart(cart);
-}
-
 function renderCartList() {
     const cart = getCart();
 
@@ -99,7 +65,7 @@ function renderCartList() {
     );
 
     $("#cart-total").html(`
-        <div class="cart-summary">
+        <div>
             <h4>Total: ${formatPrice(total)}</h4>
             <button class="btn btn-outline-success d-flex align-items-center" onclick="checkoutCart()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign-icon lucide-dollar-sign"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -109,14 +75,11 @@ function renderCartList() {
     `);
 }
 
-$(document).ready(function() {
-    renderCartList();
-});
-
 function removeFromCart(carId) {
     const cart = getCart();
     cart.items = cart.items.filter(i => i.id !== carId);
     saveCart(cart);
+    updateCartTotalItems();
 }
 
 function increaseFromCart(carId) {
@@ -124,6 +87,7 @@ function increaseFromCart(carId) {
     const item = cart.items.find(i => i.id === carId);
     item.amount += 1;
     saveCart(cart);
+    updateCartTotalItems();
 }
 
 function decreaseFromCart(carId) {
@@ -135,6 +99,7 @@ function decreaseFromCart(carId) {
     } else {
         removeFromCart(carId);
     }
+    updateCartTotalItems();
 }
 
 function checkoutCart() {
@@ -166,4 +131,10 @@ function checkoutCart() {
             showToast(message, "error");
         }
     });
+
+    updateCartTotalItems();
 }
+
+$(document).ready(function() {
+    renderCartList();
+});

@@ -7,7 +7,6 @@
     <div id="purchased-cars">
     </div>
 
-    <link rel="stylesheet" href="{{ asset("css/cars/global.css") }}">
-    <link rel="stylesheet" href="{{ asset("css/cars/cart.css") }}">
-    <script src="{{ asset("js/cars/bought-cars.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset("css/cars/bought-cars.css") }}">
+    <script src="{{ asset("js/bought-cars.js") }}"></script>
 @endsection

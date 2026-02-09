@@ -30,4 +30,4 @@
         </div>
     </form>
 </x-organisms.modal>
-<script src="{{ asset("/js/cars/components/update-car-logic.js") }}"></script>
+<script src="{{ asset("js/components/update-car-logic.js") }}"></script>

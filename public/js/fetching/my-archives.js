@@ -5,7 +5,7 @@ $(document).ready(function() {
         dataType: "json",
         success: function(response, status) {
             cars = response.data;
-            renderCars(true);
+            renderCars();
             renderPagination(response.links);
         },
         error: function(xhr, status, error) {

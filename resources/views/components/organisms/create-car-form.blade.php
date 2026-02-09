@@ -22,5 +22,5 @@
             </x-atoms.custom-button>
         </div>
     </form>
-    <script src="{{ asset("/js/cars/components/create-car-logic.js") }}"></script>
+    <script src="{{ asset("js/components/create-car-logic.js") }}"></script>
 </x-organisms.modal>

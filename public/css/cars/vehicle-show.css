@@ -51,7 +51,7 @@
 .carousel-btn.prev { left: 1rem; }
 .carousel-btn.next { right: 1rem; }
 
-.car-info {
+.show-car-info {
     box-sizing: border-box;
     padding: 1rem;
 }
@@ -62,7 +62,7 @@
     display: flex;
 }
 
-.car-info p {
+.show-car-info p {
     font-size: 1.5rem;
 }
 

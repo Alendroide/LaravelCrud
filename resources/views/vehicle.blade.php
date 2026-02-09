@@ -14,6 +14,6 @@
         window.VEHICLE_ID = {{ request()->route('id') }};
     </script>
 
-    <script src="{{ asset('/js/cars/vehicle-show.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('/css/cars/vehicle-show.css') }}">
+    <script src="{{ asset('js/vehicle-show.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/cars/vehicle-show.css') }}">
 @endsection
