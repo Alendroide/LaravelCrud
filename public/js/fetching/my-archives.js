@@ -1,3 +1,32 @@
+function fetchCars(filters = {}) {
+    
+    currentFilters = filters;
+
+    $("#loading-cars").show();
+
+    $.ajax({
+        url: "/get-archive-vehicles",
+        type: "GET",
+        data: filters,
+        dataType: "json",
+        success: function (response) {
+            cars = response.data;
+            renderCars(true);
+            renderPagination(response.links);
+        },
+        error: function () {
+            $("#cars").html(`
+                <div class="error">
+                    Error buscando vehículos!
+                </div>
+            `);
+        },
+        complete: function () {
+            $("#loading-cars").hide();
+        }
+    });
+}
+
 $(document).ready(function() {
     $.ajax({
         url: "/get-archive-vehicles",
@@ -16,7 +45,7 @@ $(document).ready(function() {
             `);
         },
         complete: function (){
-            $("#loading-cars").remove();
+            $("#loading-cars").hide();
         }
     });
 });
