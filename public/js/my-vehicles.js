@@ -55,7 +55,7 @@ $(document).ready( function () {
             success: function(response, status) {
                 $("#upload-car-modal").removeClass("show");
                 cars = [response, ...cars];
-                renderCars();
+                renderCars(true);
                 showToast("Vehículo creado exitosamente", "success");
                 // Reset
                 form.reset();
@@ -90,7 +90,7 @@ $(document).ready( function () {
             success: function(response, status) {
                 $("#update-car-modal").removeClass("show");
                 cars = cars.map(car => car.id === response.id ? response : car);
-                renderCars();
+                renderCars(true);
                 showToast("Vehículo actualizado exitosamente", "success");
             },
             error: function(xhr, status, error) {
